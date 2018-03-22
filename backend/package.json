@@ -1,0 +1,18 @@
+{
+  "name": "happynews",
+  "version": "1.0.0",
+  "description": "happy news only",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jodi De Loof",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.11",
+    "nodemon": "^1.17.2"
+  }
+}
