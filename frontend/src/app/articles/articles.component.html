@@ -1,3 +1,25 @@
-<p>
-  -- here you will find all articles order by popularity --
-</p>
+<div class="row text-center" >
+  <div class="col-md-12">
+    <form #frm="ngForm" (ngSubmit)="addArticle(frm)"  class="form-inline">
+
+      <div class="form-group">
+        <input type="text" class="form-control" name="articleUrl" ngModel>
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" name="articleTitle" ngModel>
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" name="articleDescription" ngModel>
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" name="articleThumbnail" ngModel>
+      </div>
+
+      <button type="submit" name="button" class="btn btn-success">Add article</button>
+
+    </form>
+  </div>
+</div>
