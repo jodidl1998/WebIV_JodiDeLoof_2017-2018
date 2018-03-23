@@ -23,3 +23,10 @@
     </form>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-md-12" *ngFor="let article of articleList">
+    <a href="{{article.articleUrl}}}">{{article.articleTitle}}</a>
+    <p>{{article.articleDescription}}</p>
+  </div>
+</div>
