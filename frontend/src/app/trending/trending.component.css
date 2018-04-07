@@ -10,10 +10,6 @@
     margin-right: 0;
 }
 
-.trending-posts .post .thumb {
-    margin-bottom: 20px;
-}
-
 .trending-posts .post .date {
     font-size: 14px;
     color: #b7b7b7;
@@ -43,52 +39,4 @@
 
 .trending-posts .post.first h3 {
     font-weight: 700 !important;
-}
-
-/* Social media posts */
-#main.category-page {
-    margin-top: 43px !important;
-}
-
-.social-media-posts .post,
-.category-page .post-wrap .post {
-    margin-bottom: 40px;
-}
-
-.social-media-posts .thumb,
-.category-page .post-wrap .thumb {
-    float: left;
-    margin-right: 20px;
-    width: 364px;
-}
-
-.social-media-posts .content,
-.category-page .post-wrap .content {
-    overflow: hidden;
-    min-height: 244px;
-}
-
-.social-media-posts .cat,
-.category-page .post-wrap .cat {
-    margin-top: -10px;
-}
-
-.social-media-posts h3,
-.category-page .post-wrap h3 {
-    margin: 0 0 2px;
-    line-height: 28px;
-}
-
-.social-media-posts h3 a,
-.category-page .post-wrap h3 a {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 30px;
-}
-
-.social-media-posts .excerpt-entry,
-.category-page .post-wrap .excerpt-entry {
-    font-size: 18px;
-    line-height: 30px;
-    margin-bottom: 22px;
 }
