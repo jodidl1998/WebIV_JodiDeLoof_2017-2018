@@ -7,7 +7,16 @@ import { ArticlesComponent } from './articles/articles.component';
 import { HomeComponent } from './home/home.component';
 import { EyecatcherComponent } from './eyecatcher/eyecatcher.component';
 import { TrendingComponent } from './trending/trending.component';
+import { RouterModule, Routes } from '@angular/router';
+import { ProfileComponent } from './profile/profile.component';
 
+
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'home', component: HomeComponent },
+  { path: '**', component: HomeComponent }
+];
 
 @NgModule({
   declarations: [
@@ -15,12 +24,14 @@ import { TrendingComponent } from './trending/trending.component';
     ArticlesComponent,
     HomeComponent,
     EyecatcherComponent,
-    TrendingComponent
+    TrendingComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

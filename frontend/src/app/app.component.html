@@ -38,7 +38,10 @@
             <nav id="mainnav" class="mainnav">
               <ul class="menu">
                 <li>
-                  <a href="category.html">Home</a>
+                  <a routerLink="/home">Home</a>
+                </li>
+                <li>
+                  <a routerLink="/profile">Profile</a>
                 </li>
                 <li>
                   <a href="category.html">Explore</a>
@@ -91,7 +94,7 @@
     <!-- /.header-wrap -->
   </header>
 
-<app-home></app-home>
+  <router-outlet></router-outlet>
 
 <!-- Footer -->
 <footer id="footer">
