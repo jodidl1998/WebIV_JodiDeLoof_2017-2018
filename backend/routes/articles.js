@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const Article = require('./articleSchema');
+const Article = require('../models/articleSchema');
 
 router.get('/Articles',function (req, res, next) {
     Article.find(function (err, articles) {
@@ -21,7 +21,7 @@ router.post('/Article', function (req, res, next) {
         articleThumbnail: req.body.articleThumbnail
     });
     newArticle.save(function (err) {
-        if(err){res.json(err);}else{res.json({msg:'article is framblij'});}
+        if(err){res.json(err);}else{res.json({msg:'article is added'});}
     });
 });
 
