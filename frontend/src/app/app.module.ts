@@ -11,7 +11,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { DataService } from './data.service';
-import { LoginComponent } from './login/login.component'
+import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './navbar/navbar.component'
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
     TrendingComponent,
     ProfileComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
