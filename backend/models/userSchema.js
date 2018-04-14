@@ -18,7 +18,7 @@ const UserSchema = mongoose.Schema({
     }
 });
 
-const user = module.exports = mongoose.model('User', UserSchema);
+const User = module.exports = mongoose.model('User', UserSchema);
 
 module.exports.getUserById = function(id, callback){
     User.findById(id, callback);
@@ -41,5 +41,11 @@ module.exports.addUser = function(user, callback){
             //save naar database
             user.save(callback);
         });
+    });
+};
+
+module.exports.checkPassword = function(password, hashed, callback){
+    bcrypt.compare(password, hashed, function(err, correct){
+        callback(null, correct);
     });
 };

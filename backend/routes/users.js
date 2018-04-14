@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require('passport');
+const constants = require('../config/constants');
 
 //jsonwebtoken
 const jwt = require('jsonwebtoken');
@@ -25,11 +26,38 @@ router.post("/register", function(req, res, next) {
 });
 
 router.post('/auth', function(req,res,next){
-    res.send('authentication');
+    const username = req.body.username;
+    const password = req.body.password;
+
+    User.getUserByUsername(username, function(err, user){
+        if(!user){
+            return res.json({success: false, message: 'User does not exist'});
+        }
+
+        User.checkPassword(password, user.password, function(err, correct){
+            if(correct){
+                const token = jwt.sign(user.toJSON(), constants.encryption_key, {
+                    expiresIn: 500000
+                });
+
+                res.json({
+                    success: true,
+                    token: 'JWT '+token,
+                    user: {
+                        id: user._id,
+                        username: user.username,
+                        email: user.email
+                    }
+                });
+            }else{
+                return res.json({success: false, message: 'Verkeerde wachtwoord'});
+            }
+        });
+    });
 });
 
-router.get('/profile', function(req,res,next){
-    res.send('profiel');
+router.get('/profile', passport.authenticate('jwt',{session: false}), function(req,res,next){
+    res.json({user: req.user});
 });
 
 module.exports = router;

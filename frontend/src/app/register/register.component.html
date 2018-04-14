@@ -1,0 +1,27 @@
+<div class="form-title">
+  <h4>Sign Up</h4>
+  <div class="signup">
+    Already a member?
+    <a href="#">Login</a>
+  </div>
+</div>
+
+
+<form id="signupform" [formGroup]="form" (ngSubmit)="registerSubmit(form.value)">
+  <div class="name-wrap">
+    <input type="text" size="30" class="input"  name="username" placeholder="Username" formControlName="username">
+  </div>
+  <div class="email-wrap">
+    <input type="text" size="30" class="input" name="email" placeholder="Email" formControlName="email">
+  </div>
+  <div class="pass-wrap">
+    <input type="password" size="30" class="input" name="password" placeholder="Password" formControlName="password">
+  </div>
+  <div class="pass-wrap">
+    <input type="password" size="30" class="input" name="repeatPassword" placeholder="Repeat Password" formControlName="repeatPassword">
+  </div>
+
+  <div class="submit-login">
+    <input type="submit" value="Sign Up" class="submit" [disabled]="!form.valid" data-dismiss="signup-modal">
+  </div>
+</form>

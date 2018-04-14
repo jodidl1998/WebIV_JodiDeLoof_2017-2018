@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const passport = require('passport');
 const cors = require('cors');
 
 //routes
@@ -27,6 +28,11 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 //middelware
 app.use(cors());
 app.use(bodyParser.json());
+app.use(passport.initialize());
+app.use(passport.session());
+
+//passport configuratie
+require('./config/passportConf')(passport);
 
 //route
 app.use('/articles',articles);
