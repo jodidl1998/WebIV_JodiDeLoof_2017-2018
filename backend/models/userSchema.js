@@ -15,6 +15,14 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    description:{
+        type: String,
+        required: true
+    },
+    picture:{
+        type: String,
+        required: true
     }
 });
 
@@ -23,7 +31,6 @@ const User = module.exports = mongoose.model('User', UserSchema);
 module.exports.getUserById = function(id, callback){
     User.findById(id, callback);
 }
-
 
 module.exports.getUserByUsername = function(username, callback){
     const byUserNameQuery = {username : username }
@@ -49,3 +56,11 @@ module.exports.checkPassword = function(password, hashed, callback){
         callback(null, correct);
     });
 };
+
+module.exports.updateUser = function(user, changed_user, callback){
+    user.email = changed_user.email;
+    user.username = changed_user.username;
+    user.description = changed_user.description;
+    user.picture = changed_user.picture;
+    user.save(callback);
+}

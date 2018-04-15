@@ -45,6 +45,12 @@ export class DataService {
     this.user = user;
   }
 
+  getUserDataByUsername(username){
+    let headers = new Headers();
+    headers.append('Content-Type', 'Application/json');
+    return this.http.get('http://localhost:3000/users/profile?username='+username, {headers: headers}).map(res => res.json());
+  }
+
   logout(){
     this.authToken = null;
     this.user = null;
@@ -65,5 +71,17 @@ export class DataService {
 
   loggedIn(){
     return tokenNotExpired();
+  }
+
+  getLoggedInUser(){
+    return JSON.parse(localStorage.getItem('user'));
+  }
+
+  updateUser(user){
+    let headers = new Headers();
+    this.loadToken();
+    headers.append("Authorization",this.authToken);
+    headers.append('Content-Type', 'Application/json');
+    return this.http.post('http://localhost:3000/users/update',user, {headers: headers}).map(res => res.json());
   }
 }

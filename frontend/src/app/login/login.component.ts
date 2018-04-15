@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
 
     this.dataService.authUser(user).subscribe(data => {
       if(data.success){
+        
         this.dataService.storeUser(data.token, user);
         this.router.navigate(['/home']);
       }else{

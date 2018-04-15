@@ -28,6 +28,10 @@
 
             <div *ngIf="dataService.loggedIn()">
               <span class="login-popup">
+                <a routerLink="/profile">Welkom {{dataService.getLoggedInUser().username}}</a>
+              </span>
+
+              <span class="login-popup">
                 <a routerLink="/login" (click)="logout()">Logout</a>
               </span>
   

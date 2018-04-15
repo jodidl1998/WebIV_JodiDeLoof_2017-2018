@@ -9,10 +9,12 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  user;
+
   constructor(private dataService: DataService, private router:Router) { }
 
   ngOnInit() {
-
+    this.dataService.getLoggedInUser();
   }
 
   logout(){
