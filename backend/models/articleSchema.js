@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 const ArticleSchema = mongoose.Schema({
-    articleUrl: {
+    articleThumbnail: {
        type: String,
        required: true
     },
@@ -13,7 +13,7 @@ const ArticleSchema = mongoose.Schema({
         type: String,
         required: false
     },
-    articleThumbnail: {
+    articleCategory: {
         type: String,
         required: false
     }

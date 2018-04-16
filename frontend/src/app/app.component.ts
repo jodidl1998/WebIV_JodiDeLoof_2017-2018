@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DataService } from './data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(private dataService: DataService, private router:Router) { }
+
+
+  logout(){
+    this.dataService.logout();
+    this.router.navigate(['/login']);
+    return false;
+  }
 }

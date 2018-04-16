@@ -1,3 +1,423 @@
+/* Elements Page
+-------------------------------------------------------------- */
+.section-element {
+    padding: 80px 0 0;
+}
+
+.section-element.columns {
+    margin-bottom: 100px;
+}
+
+.section-element.columns .row {
+    margin-bottom: 40px;
+    color: #1a1d24;
+}
+
+.elements-title {
+    color: #1a1d24;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 40px;
+    margin: 0 0 22px;
+}
+
+.font-style {
+    color: #b7b7b7;
+    font-size: 30px;
+    line-height: 40px;
+    margin-bottom: 80px;
+}
+
+.elements-content {
+    float: left;
+}
+
+.elements-box-wrap {
+    margin-right: 33px;
+    width: 118px;
+}
+
+.elements-box {
+    height: 118px;
+    margin-bottom: 5px;
+    width: 118px;
+}
+
+.elements-box.black {
+    background-color: #181818;
+}
+
+.elements-box.gray {
+    background-color: #b7b7b7;
+}
+
+.elements-box-wrap span {
+    display: block;
+    color: #7d7d7d;
+    font-size: 14px;
+}
+
+.elements-box-wrap span.text {
+    color: #181818;
+    font-weight: 700;
+}
+
+.button-item {
+    float: left;
+    margin-bottom: 35px;
+    margin-right: 12px;
+    text-align: center;
+}
+
+.button-item span {
+    display: block;
+    text-align: left;
+    color: #b7b7b7;
+    font-size: 14px;
+}
+
+.button-item.no-margin {
+    margin-bottom: 15px;
+}
+
+.section-element .input-wrap {
+    float: left;
+    width: 318px;
+    padding-top: 12px;
+    margin-right: 25px;
+}
+
+.section-element .input-wrap input {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.section-element .input-wrap span.error,
+.notification_error,
+.notification_ok {
+    font-size: 14px;
+}
+
+.section-element .input-wrap span.error,
+.notification_error {
+    color: #fc1616;
+}
+
+.section-element .input-wrap input.error {
+    border: 1px solid #e8280b;
+}
+
+.notification_error,
+.notification_ok {
+    margin-top: 5px;
+}
+
+.notification_ok {
+    color: #46b809;
+}
+
+.check-wrap {
+    clear: left;
+    padding-top: 20px;
+    overflow: hidden;
+}
+
+.check-wrap span {
+    padding-right: 5px;
+    font-size: 16px;
+}
+
+.check-wrap .radios {
+    float: left;
+    margin-right: 30px;
+}
+
+/* Login Page
+-------------------------------------------------------------- */
+.section.login-page {
+    background-color: #f3f3f3;
+    padding: 80px 0;
+}
+
+.section-login {
+    margin-bottom: 77px;
+}
+
+/* 404 Page
+-------------------------------------------------------------- */
+.error-page {
+    padding: 120px 0;
+    color: #252525;
+}
+
+.error-wrap h2 {
+    margin: 0;
+    font-size: 48px;
+    line-height: 60px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.error-wrap p {
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+
+.error-wrap #searchform {
+    position: relative;
+    overflow: hidden;
+    line-height: 53px;
+    width: 510px;
+    padding-bottom: 40px;
+}
+
+.error-wrap #s {
+    width: 100%;
+    height: 53px;
+    border: 1px solid #e7e9ea;
+}
+
+.error-wrap #searchsubmit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0;
+    width: 59px;
+    height: 53px;
+    text-indent: -9999px;
+    background: url(/assets/images/search.png) no-repeat center center;
+    margin: 0;
+}
+
+.error-wrap .spacer {
+    position: relative;
+}
+
+.error-wrap .spacer:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    width: 510px;
+    height: 1px;
+    z-index: 1;
+    background-color: #e8eaec;
+}
+
+.error-wrap .spacer:after {
+    position: absolute;
+    left: 50px;
+    top: -13px;
+    color: #b7b7b7;
+    content: "or";
+    font-size: 18px;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    z-index: 2222;
+    text-align: center;
+}
+
+.error-wrap .go-home {
+    margin-top: 50px;
+    font-weight: normal;
+}
+
+/* About Page
+-------------------------------------------------------------- */
+.about-page-wrap {
+overflow: hidden;
+padding: 22px 96px 0 0;
+}
+
+.about-page .content-left {
+float: left;
+width: 22.97%;
+margin-right: 4.82%;
+}
+
+.about-page .content-right {
+float: right;
+width: 72.2%;
+}
+
+.about-page .content-left h5.title {
+font-size: 16px;
+font-weight: 500;
+margin: 0 0 8px;
+}
+
+.about-page .about-links,
+.about-page .about-twitter,
+.about-page .about-contact {
+font-size: 14px;
+padding: 30px;
+border: 1px solid #ebebeb;
+margin-bottom: 30px;
+-webkit-border-radius: 4px;
+   -moz-border-radius: 4px;
+     -o-border-radius: 4px;
+        border-radius: 4px;
+}
+
+.about-page .about-links {
+padding: 0 30px 0 20px;
+}
+
+.about-page .about-links li {
+line-height: 50px;
+border-top: 1px solid #ebebeb;
+}
+
+.about-page .about-links li:first-child {
+border-top: 0;
+}
+
+.about-page .about-links li a {
+font-size: 16px;
+color: #181818;
+}
+
+.about-page .about-links li a:hover {
+font-weight: 700;
+text-decoration: none;
+}
+
+.about-page .about-twitter .tweet_list li {
+margin-bottom: 10px;
+}
+
+.about-page .about-twitter .tweet_list .tweet_time {
+display: block;
+font-size: 12px;
+line-height: 18px;
+color: #959595;
+padding-top: 7px;
+}
+
+.about-page .about-twitter .follow-us {
+line-height: 40px;
+display: inline-block;
+padding: 0 20px;
+margin-top: 15px;
+-webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+     -o-border-radius: 3px;
+        border-radius: 3px;
+}
+
+.about-page .about-twitter .follow-us a {
+color: #fff;
+position: relative;
+padding-left: 29px;
+display: inline-block;
+}
+
+.about-page .about-twitter .follow-us a:before {
+position: absolute;
+left: 0;
+top: 0;
+content: "\f099";
+font-family: "FontAwesome";
+font-size: 20px;
+}
+
+.about-page .about-contact {
+line-height: 22px;
+}
+
+.about-page .about-contact p {
+margin-bottom: 10px;
+}
+
+.about-page h2.title {
+font-size: 36px;
+margin: -7px 0 20px;
+}
+
+.about-page .subtitle {
+font-size: 24px;
+line-height: 36px;
+margin-bottom: 37px;
+}
+
+/* Contact Page
+-------------------------------------------------------------- */
+.contact-page .content-left {
+    padding-right: 96px;
+}
+
+.contact-page h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 18px 0 32px;
+}
+
+.contact-page h2.title-map {
+    margin: 18px 0 15px;
+}
+
+.contact-page .input-wrap {
+    float: left;
+    width: 48.66%;
+    margin-right: 2.67%;
+    margin-bottom: 20px;
+}
+
+.contact-page .message-wrap {
+    margin-bottom: 20px;
+}
+
+.contact-page .send-wrap input {
+    padding: 0 35px;
+    font-size: 16px;
+    line-height: 44px;
+    font-weight: normal;
+}
+
+.contact-page .input-wrap.last {
+    margin-right: 0;
+}
+
+.contact-page .input-wrap input {
+    width: 100%;
+}
+
+.contact-page .contact-info {
+    margin: -12px 0 40px;
+    color: #a6a6a6;
+    line-height: 30px;
+}
+
+.contact-page .contact-info .title {
+    font-size: 16px;
+    color: #181818;
+}
+
+.contact-page .contact-social li {
+    float: left;
+    margin: 20px 21px 0 0;
+}
+
+.contact-page .contact-social i {
+    font-size: 20px;
+    color: #d5d5d5;
+    -webkit-transition: color 0.3s ease-in-out;
+       -moz-transition: color 0.3s ease-in-out;
+        -ms-transition: color 0.3s ease-in-out;
+         -o-transition: color 0.3s ease-in-out;
+            transition: color 0.3s ease-in-out;
+}
+
+.contact-form .result {
+    margin-bottom: 15px;
+}
+
+.contact-page #map {
+    margin-bottom: 40px;
+}
+
 /* Home Page
 -------------------------------------------------------------- */
 #main {

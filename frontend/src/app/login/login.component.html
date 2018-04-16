@@ -1,0 +1,35 @@
+<div class="col-md-12">
+    <section class="section-login">
+        <div id="login-modal" class="login">
+            <div class="form-title">
+                <h4>Login</h4>
+                <div class="signup">
+                    No account yet? <a href="#">Sign Up</a>
+                </div>
+            </div>
+            <form #loginForm="ngForm" (ngSubmit)="loginSubmit(loginForm.value)">
+                <div class="email-wrap">
+                    <label for="user-email">Your email address</label>
+                    <input type="text" size="30"  class="input" name="username" ngModel>
+                </div>     
+                <div class="pass-wrap">
+                    <label for="user-pass">Password</label>
+                    <input type="password" size="30" class="input" name="password" ngModel>
+                </div>
+
+                <div class="option-login">
+                    <div class="remember">
+                        <input type="checkbox" name="check3" id="check3" class="css-checkbox" checked="checked"><label for="check3" class="css-label">Remember me</label>
+                    </div>
+                    <div class="forgot">
+                        <a href="#">I forgot my password</a>
+                    </div>
+                </div>
+
+                <div class="submit-login">
+                    <input type="submit">
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
