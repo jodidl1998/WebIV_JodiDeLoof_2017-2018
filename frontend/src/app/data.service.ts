@@ -45,9 +45,11 @@ export class DataService {
     this.user = user;
   }
 
-  getUserDataByUsername(username){
+  getProfile(username){
     let headers = new Headers();
+    this.loadToken();
     headers.append('Content-Type', 'Application/json');
+    headers.append("Authorization",this.authToken);
     return this.http.get('http://localhost:3000/users/profile?username='+username, {headers: headers}).map(res => res.json());
   }
 

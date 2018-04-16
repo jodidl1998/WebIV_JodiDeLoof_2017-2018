@@ -12,12 +12,15 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { DataService } from './data.service';
 import { LoginComponent } from './login/login.component';
-import { NavbarComponent } from './navbar/navbar.component'
+import { NavbarComponent } from './navbar/navbar.component';
+import { EditprofileComponent } from './editprofile/editprofile.component'
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent },
+  { path: 'editprofile' , component: EditprofileComponent },
   { path: '**', component: HomeComponent }
 ];
 
@@ -31,7 +34,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     RegisterComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    EditprofileComponent
   ],
   imports: [
     BrowserModule,

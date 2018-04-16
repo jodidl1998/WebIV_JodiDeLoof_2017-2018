@@ -3,11 +3,11 @@ import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-editprofile',
+  templateUrl: './editprofile.component.html',
+  styleUrls: ['./editprofile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class EditprofileComponent implements OnInit {
 
   username;
   description;
@@ -29,10 +29,21 @@ export class ProfileComponent implements OnInit {
     }else{
       this.router.navigate(['/login']);
     }
-
-    
-    
   }
 
-  
+  editSubmit(form){
+    let newDescription = form.newDescription;
+    if(newDescription && newDescription != this.description){
+      let user = {
+        username: this.username,
+        description : newDescription,
+        picture: this.picture
+      };
+      this.dataService.updateUser(user).subscribe(data => {
+        if(data){
+          this.router.navigate(['/profile']);
+        }
+      });
+    }
+  }
 }

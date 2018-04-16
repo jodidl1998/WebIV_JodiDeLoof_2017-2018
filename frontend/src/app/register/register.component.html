@@ -1,3 +1,4 @@
+<!--
 <div class="form-title">
   <h4>Sign Up</h4>
   <div class="signup">
@@ -25,3 +26,37 @@
     <input type="submit" value="Sign Up" class="submit" [disabled]="!form.valid" data-dismiss="signup-modal">
   </div>
 </form>
+-->
+
+
+
+<div class="col-md-12">
+  <section class="section-login">
+      <div id="login-modal" class="login">
+          <div class="form-title">
+              <h4>Register</h4>
+          </div>
+          <form id="signupform" [formGroup]="form" (ngSubmit)="registerSubmit(form.value)">
+              <div class="email-wrap">
+                  <label for="user-email">Your username</label>
+                  <input type="text" size="30"  class="input" name="username" formControlName="username">
+              </div>
+              <div class="email-wrap">
+                  <label for="user-email">Your email address</label>
+                  <input type="text" size="30"  class="input" name="email" formControlName="email">
+              </div>     
+              <div class="pass-wrap">
+                  <label for="user-pass">Password</label>
+                  <input type="password" size="30" class="input" name="password" formControlName="password">
+              </div>
+              <div class="pass-wrap">
+                  <label for="user-pass">Repeat Password</label>
+                  <input type="password" size="30" class="input" name="password" formControlName="repeatPassword">
+              </div>
+              <div class="submit-login">
+                  <input type="submit" [disabled]="!form.valid">
+              </div>
+          </form>
+      </div>
+  </section>
+</div>

@@ -1,0 +1,38 @@
+<!-- Main -->
+<section id="main" class="category-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" style="margin-bottom: 55px;">
+        <div class="about-page-wrap">
+          <form  #editForm="ngForm" (ngSubmit)="editSubmit(editForm.value)">
+            <div class="row">
+              <div class="col-md-6">
+
+                <h2 class="title">{{username}}</h2>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" rows="3" value="{{description}}" name="newDescription" ngModel></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Edit profile">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <img src="{{picture}}" style="width: 100%;" class="responsive" alt="image">
+                
+              </div>
+            </div>
+          </form>
+          <!-- /.content-right -->
+        </div>
+        <!-- /.about-page-wrap -->
+      </div>
+      <!-- /.col-md-12 -->
+
+    </div>
+    <!-- /.row -->
+
+
+  </div>
+  <!-- /.container -->
+</section>
