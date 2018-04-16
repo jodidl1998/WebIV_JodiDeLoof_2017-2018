@@ -58,26 +58,30 @@ router.post('/auth', function(req,res,next){
     });
 });
 
-router.get('/profile', function(req,res,next){
+router.get('/profile',passport.authenticate('jwt',{session: false}), function(req,res,next){
     _username = req.query.username;
     User.getUserByUsername(_username, function(err, _user){
         if(!_user){
             return res.json({success: false, message: "user does not exists"});
         }else{
-            return res.json({success: true, user: _user});
+            userObj = {
+                username: _user.username,
+                description: _user.description,
+                picture: _user.picture
+            }
+            return res.json({success: true, user: userObj});
         }
     });
 });
 
 
 router.post('/update',passport.authenticate('jwt',{session: false}), function(req,res,next){
-    const _email = req.body.email;
+
     const _username = req.body.username;
     const _description = req.body.description;
     const _picture = req.body.picture;
 
     let changed_user = {
-        email : _email,
         username : _username,
         description : _description,
         picture : _picture

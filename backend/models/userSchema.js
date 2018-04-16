@@ -58,7 +58,6 @@ module.exports.checkPassword = function(password, hashed, callback){
 };
 
 module.exports.updateUser = function(user, changed_user, callback){
-    user.email = changed_user.email;
     user.username = changed_user.username;
     user.description = changed_user.description;
     user.picture = changed_user.picture;

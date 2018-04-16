@@ -21,7 +21,7 @@
               </span>
   
               <span class="signup-popup">
-                <a href="#signup-modal">Become a member</a>
+                <a routerLink="/register">Become a member</a>
               </span>
             </div>
 
@@ -59,13 +59,13 @@
               <li>
                 <a routerLink="/home">Home</a>
               </li>
-              <li>
+              <li *ngIf="dataService.loggedIn()">
                 <a routerLink="/profile">Profile</a>
               </li>
               <li>
                 <a href="category.html">Explore</a>
               </li>
-              <li>
+              <li *ngIf="dataService.loggedIn()">
                 <a href="category.html">Notifications</a>
               </li>
 
