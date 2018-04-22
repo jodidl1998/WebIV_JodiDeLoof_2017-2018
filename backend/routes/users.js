@@ -1,110 +1,47 @@
-const express = require("express");
-const router = express.Router();
-const passport = require('passport');
-const constants = require('../config/constants');
+let express = require('express');
+let router = express.Router();
+let mongoose = require('mongoose');
+let User = mongoose.model('User');
+let passport = require('passport');
 
-//jsonwebtoken
-const jwt = require('jsonwebtoken');
-
-//import user schema 
-const User = require('../models/userSchema')
-
-router.post("/register", function(req, res, next) {
-    let newUser = new User({
-        email: req.body.email,
-        username : req.body.username,
-        password: req.body.password,
-        description: "empty",
-        picture: "/test"
-    });
-
-    User.addUser(newUser, function(err, user){
-        if(err){
-            res.json({ success: false, message: err});
-        }else{
-            res.json({ success: true, message: 'user is registered'});
-        } 
-    });
-});
-
-router.post('/auth', function(req,res,next){
-    const username = req.body.username;
-    const password = req.body.password;
-
-    User.getUserByUsername(username, function(err, user){
-        if(!user){
-            return res.json({success: false, message: 'User does not exist'});
-        }
-
-        User.checkPassword(password, user.password, function(err, correct){
-            if(correct){
-                const token = jwt.sign(user.toJSON(), constants.encryption_key, {
-                    expiresIn: 500000
-                });
-
-                res.json({
-                    success: true,
-                    token: 'JWT '+token,
-                    user: {
-                        id: user._id,
-                        username: user.username,
-                        email: user.email
-                    }
-                });
-            }else{
-                return res.json({success: false, message: 'Verkeerde wachtwoord'});
-            }
-        });
-    });
-});
-
-router.get('/profile',passport.authenticate('jwt',{session: false}), function(req,res,next){
-    _username = req.query.username;
-    User.getUserByUsername(_username, function(err, _user){
-        if(!_user){
-            return res.json({success: false, message: "user does not exists"});
-        }else{
-            userObj = {
-                username: _user.username,
-                description: _user.description,
-                picture: _user.picture
-            }
-            return res.json({success: true, user: userObj});
-        }
-    });
-});
-
-
-router.post('/update',passport.authenticate('jwt',{session: false}), function(req,res,next){
-
-    const _username = req.body.username;
-    const _description = req.body.description;
-    const _picture = req.body.picture;
-
-    let changed_user = {
-        username : _username,
-        description : _description,
-        picture : _picture
+router.post('/register', function(req, res, next) {
+  if (!req.body.username || !req.body.password) {
+    return res.status(400).json({ message: 'Please fill out all fields' });
+  }
+  let user = new User();
+  user.username = req.body.username;
+  user.setPassword(req.body.password);
+  user.save(function(err) {
+    if (err) {
+      return next(err);
     }
-
-    User.getUserByUsername(_username, function(err, user){
-        if(!user){
-            return res.json({success: false, message: "user does nt exists"});
-        }else{
-            User.updateUser(user, changed_user, function(err, user){
-                if(err){
-                    return res.json({success: false, message: "probleem bij updaten van user"});
-                }else{
-                    return res.json({success: true, message: "user is geupdate"});
-                }
-            });
-        }
-    });
-
-    
-    
+    return res.json({ token: user.generateJWT() });
+  });
 });
 
+router.post('/login', function(req, res, next) {
+  if (!req.body.username || !req.body.password) {
+    return res.status(400).json({ message: 'Please fill out all fields' });
+  }
+  passport.authenticate('local', function(err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (user) {
+      return res.json({ token: user.generateJWT() });
+    } else {
+      return res.status(401).json(info);
+    }
+  })(req, res, next);
+});
+
+router.post('/checkusername', function(req, res, next) {
+  User.find({ username: req.body.username }, function(err, result) {
+    if (result.length) {
+      res.json({ username: 'alreadyexists' });
+    } else {
+      res.json({ username: 'ok' });
+    }
+  });
+});
 module.exports = router;
-
-
