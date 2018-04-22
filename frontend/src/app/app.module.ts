@@ -1,50 +1,37 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 import { AppComponent } from './app.component';
-import { ArticlesComponent } from './articles/articles.component';
-import { HomeComponent } from './home/home.component';
-import { EyecatcherComponent } from './eyecatcher/eyecatcher.component';
-import { TrendingComponent } from './trending/trending.component';
-import { RouterModule, Routes } from '@angular/router';
-import { ProfileComponent } from './profile/profile.component';
-import { RegisterComponent } from './register/register.component';
-import { DataService } from './data.service';
-import { LoginComponent } from './login/login.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { EditprofileComponent } from './editprofile/editprofile.component'
-const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent },
-  { path: 'editprofile' , component: EditprofileComponent },
-  { path: '**', component: HomeComponent }
-];
+import { LandingpageComponent } from './landingpage/landingpage.component';
+import { HomeComponent } from './dashboard/home/home.component';
+import { DashboardDataService } from './dashboard/dashboard-data.service';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { RoutingModule } from './routing/routing.module';
+import { RegisterComponent } from './user/register/register.component';
+import { AuthenticationService } from './user/authentication.service';
+import { LoginComponent } from './user/login/login.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ArticlesComponent,
+    LandingpageComponent,
     HomeComponent,
-    EyecatcherComponent,
-    TrendingComponent,
-    ProfileComponent,
+    NotFoundComponent,
     RegisterComponent,
-    LoginComponent,
-    NavbarComponent,
-    EditprofileComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
-    HttpModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RoutingModule
   ],
-  providers: [DataService],
+  providers: [DashboardDataService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

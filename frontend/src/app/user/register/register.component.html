@@ -1,0 +1,64 @@
+<!-- Main wrapper  -->
+<div id="main-wrapper">
+
+  <div class="unix-login">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-lg-4">
+          <div class="login-content card">
+            <div class="login-form">
+              <h4>Register</h4>
+              <div *ngIf='errorMsg' >{{errorMsg}}</div>
+              <form [formGroup]='user' (ngSubmit)='onSubmit()'>
+                <div class="form-group">
+                  <label for="username">User Name</label>
+                  <input type="text" class="form-control" id="username" formControlName="username">
+                  <div class="alert alert-warning" *ngIf=' user.get("username").errors?.required && user.get("username").touched'>
+                    gebruikersnaam is verplicht
+                  </div>
+                  <div class="alert alert-warning" *ngIf='user.get("username").errors?.minlength && user.get("username").touched'>
+                    je gebruikersnaam moet minstens {{user.get("username").errors?.minlength.requiredLength }} letters bevatten
+                  </div>
+                  <div class="alert alert-danger"  *ngIf='user.get("username").errors?.userAlreadyExists && user.get("username").touched'>
+                    een gebruiker met deze naam bestaat al
+                  </div>
+                </div>
+
+
+                <div formGroupName='passwordGroup'>
+
+                  <div class="form-group">
+                    <label for="password">password:</label>
+                    <input type="password" class="form-control" id="password" formControlName='password'>
+                    <div class="alert alert-warning" *ngIf=' passwordControl.errors?.passwordTooShort && passwordControl.touched'>
+                        Wachtwoord moet minstens uit {{passwordControl.errors?.passwordTooShort.requiredLength}} tekens bestaan (momenteel {{passwordControl.errors?.passwordTooShort.actualLength}})
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="confirmpassword">confirm password:</label>
+                    <input type="password" class="form-control" id="confirmpassword" formControlName='confirmPassword'>
+                    <div class="alert alert-warning" *ngIf=' user.get("passwordGroup").errors?.passwordsDiffer && user.get("passwordGroup").get("confirmPassword").touched  && user.get("passwordGroup").get("password").touched'>
+                      the two passwords should be the same
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30" type='submit' [disabled]='!user.valid'>Register</button>
+                <div class="register-link m-t-15 text-center">
+                  <p>Already have account ?
+                    <a href="#"> Sign in</a>
+                  </p>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- End Wrapper -->

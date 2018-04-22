@@ -1,0 +1,295 @@
+/*
+    Template: Ela Admin
+    Author: Zebra Theme
+    Developer by: Zebra Theme
+
+    Table of Content
+    ================
+
+1. variable
+2. fonts
+3. card
+4. global
+5. badge
+6. tab
+7. modal
+8. timeline
+9. data-table
+10. panel
+11. button
+12. header
+13. gmap
+14. chat
+15. carousel
+16. weather
+17. invoice-edit
+18. invoice
+19. widget-stat
+20. recent-comments
+21. recent-message
+22. forms
+23. compose-email
+24. progress-bar
+25. todo-list
+26. datamap
+27. table
+28. order-progress
+29. login
+30. chart
+31. nestable
+32. profile
+33. profile-widget
+34. ui-element-basic
+35. calendar
+36. flot-chart
+37. morris-chart
+38. products_1
+39. products_2
+40. products_3
+41. favourite_menu
+42. order-list
+43. booking-system
+44. scrollable
+45. vector-map
+46. menu-upload
+47. social-media-stats
+48. vertical-carousel
+49. chartist
+50. table-export
+51. ui-widget-v1
+42. responsive
+
+*/
+* {
+    outline: none;
+  }
+  body {
+    background: #fff;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    color: #67757c;
+  }
+  html {
+    position: relative;
+    min-height: 100%;
+    background: #ffffff;
+  }
+  a:focus,
+  a:hover {
+    text-decoration: none;
+  }
+  h4 {
+    color: #455a64;
+    font-weight: 400;
+  }
+  h4 {
+    line-height: 22px;
+    font-size: 18px;
+  }
+  #main-wrapper {
+    width: 100%;
+  }
+  .container-fluid {
+    padding: 0 30px 25px;
+  }
+  .input-group-addon [type=checkbox]:not(:checked),
+  .input-group-addon [type=radio]:not(:checked) {
+    position: initial;
+    opacity: 1;
+  }
+  a,
+  button {
+    outline: none!important;
+    text-decoration: none!important;
+    color: #99abb4;
+    transition: all 0.2s ease 0s;
+  }
+  a:focus,
+  button:focus,
+  a:hover,
+  button:hover {
+    color: #252525;
+    outline: none!important;
+    text-decoration: none!important;
+  }
+  p {
+    font-family: 'Poppins', sans-serif;
+    color: #99abb4;
+  }
+  h4 {
+    color: #455a64;
+  }
+  /*    Color Mixins
+  -------------------*/
+  /*    Mixins
+  --------------------------*/
+  /*    Background Mixins
+  --------------------------*/
+  /*    Border Mixins
+  --------------------------*/
+  /*    Brand Background
+  -----------------------------*/
+  /*    width
+  -----------------------------*/
+  /*    Chart Spanrkline
+  -------------------------*/
+  /*    Bootstrap class
+  ---------------------------*/
+  /*    Font Variable
+  ----------------------*/
+  /*    Color Variable
+  -----------------------*/
+  /*    Solid Color
+  ------------------*/
+  /*    Brand color
+  ----------------------*/
+  .card {
+    margin-bottom: 30px;
+  }
+  .card {
+    background: #ffffff none repeat scroll 0 0;
+    margin: 15px 0;
+    padding: 20px;
+    border: 0 solid #e7e7e7;
+    border-radius: 5px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  }
+  .btn {
+    padding: 7px 12px;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: #5c4ac7;
+    border: 1px solid #5c4ac7;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(116, 96, 238, 0.14), 0 3px 1px -2px rgba(116, 96, 238, 0.2), 0 1px 5px 0 rgba(116, 96, 238, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(116, 96, 238, 0.14), 0 3px 1px -2px rgba(116, 96, 238, 0.2), 0 1px 5px 0 rgba(116, 96, 238, 0.12);
+    -webkit-transition: 0.2s ease-in;
+    -o-transition: 0.2s ease-in;
+    transition: 0.2s ease-in;
+  }
+  .btn-primary:hover {
+    background: #5c4ac7;
+    -webkit-box-shadow: 0 14px 26px -12px rgba(116, 96, 238, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(116, 96, 238, 0.2);
+    box-shadow: 0 14px 26px -12px rgba(116, 96, 238, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(116, 96, 238, 0.2);
+    border: 1px solid #5c4ac7;
+  }
+  .btn-primary:active {
+    background: #6352ce;
+    -webkit-box-shadow: 0 14px 26px -12px rgba(116, 96, 238, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(116, 96, 238, 0.2);
+    box-shadow: 0 14px 26px -12px rgba(116, 96, 238, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(116, 96, 238, 0.2);
+  }
+  .btn-primary:active:focus {
+    background-color: #6352ce;
+    border: 1px solid #6352ce;
+  }
+  .btn-primary:active:hover {
+    background-color: #6352ce;
+    border: 1px solid #6352ce;
+  }
+  .btn-primary:focus {
+    background: #6352ce;
+    -webkit-box-shadow: 0 14px 26px -12px rgba(116, 96, 238, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(116, 96, 238, 0.2);
+    box-shadow: 0 14px 26px -12px rgba(116, 96, 238, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(116, 96, 238, 0.2);
+    background-color: #6352ce;
+    border: 1px solid #6352ce;
+  }
+  /*    Home Chat Widget
+  ---------------------------------*/
+  /**
+   * INVOICELIST BODY
+   */
+  /**
+   * INVOICE LIST FOOTER
+   */
+  /**
+   * NOTE
+   */
+  /**
+   * FOOTER
+   */
+  /**
+   * PRINT STYLE
+   */
+  /* All Invoice Page Responsive
+  --------------------------- */
+  /*    Widget One
+  ---------------------------*/
+  /*    Widget Two
+  ---------------------------*/
+  /*    Widget Three
+  ---------------------------*/
+  /* Stat widget Eight
+  --------------------------- */
+  /*
+  =================================================
+      Responsive
+  =================================================
+  */
+  @media (max-width: 768px) {
+    .card {
+      display: inline-block;
+      width: 100%;
+    }
+  }
+  /*    Input Style
+  ------------------------*/
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-control {
+    height: 42px;
+    border-radius: 0;
+    box-shadow: none;
+    border-color: #e7e7e7;
+    font-family: 'Poppins', sans-serif;
+  }
+  .form-control:hover {
+    box-shadow: none;
+    border-color: #e7e7e7;
+  }
+  .form-control:focus {
+    box-shadow: none;
+    border-color: #878787;
+  }
+  /*    Search Box Input Button
+  --------------------------------*/
+  /*    Input States
+  -----------------------*/
+  /*    Input Size
+  --------------------*/
+  /*    Basic form
+  ----------------------*/
+  label {
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  /*    Form Horizontal
+  ----------------------*/
+  .login-content {
+    margin: 100px 0;
+  }
+  .login-form {
+    background: #ffffff;
+    padding: 30px 30px 20px;
+    border-radius: 2px;
+  }
+  .login-form h4 {
+    color: #455a64;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .login-form .btn {
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 15px;
+    border: 0px;
+  }
+  .login-form label {
+    color: #455a64;
+    text-transform: uppercase;
+  }
+  .register-link a {
+    color: #4680ff;
+  }

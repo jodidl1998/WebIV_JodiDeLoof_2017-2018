@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { DataService } from './data.service';
-import { Router } from '@angular/router';
-
+import { AuthenticationService } from './user/authentication.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  constructor(private authService: AuthenticationService) {}
 
-  constructor(private dataService: DataService, private router:Router) { }
-
-
-  logout(){
-    this.dataService.logout();
-    this.router.navigate(['/login']);
-    return false;
+  get currentUser(): Observable<string> {
+    return this.authService.user$;
   }
 }
