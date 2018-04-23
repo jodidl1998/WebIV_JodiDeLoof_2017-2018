@@ -8,7 +8,7 @@ let auth = jwt({
   secret: "1234"
 });
 
-router.post('/API/addDeadline/',auth, function(req, res, next) {
+router.post('/API/addDeadline/', function(req, res, next) {
 
   let deadline = new Deadline(req.body);
 

@@ -39,6 +39,8 @@
                 </thead>
                 <tbody>
 
+                  
+
                   <tr *ngFor='let localDeadlines of deadlines'>
                     <td>{{localDeadlines.date}}</td>
                     <td>{{localDeadlines.vak}}</td>
@@ -51,9 +53,11 @@
                   </tr>
                 </tbody>
               </table>
-
+              <div class="text-center" style="padding: 25px;" *ngIf="deadlineCount == 0">
+                <p>Nog geen deadlines toegevoegd</p>
+              </div>
               <div class="text-center">
-                <button type="button" class="btn btn-info" style="width: 10%">Success</button>
+                <button type="button" class="btn btn-info" style="width: 30%; margin: 25px;">Bekijken in agenda</button>
               </div>
 
             </div>
