@@ -8,7 +8,7 @@ let auth = jwt({
   secret: "1234"
 });
 
-router.post('/API/addDeadline/', function(req, res, next) {
+router.post('/API/addDeadline/',auth, function(req, res, next) {
 
   let deadline = new Deadline(req.body);
 
@@ -19,20 +19,27 @@ router.post('/API/addDeadline/', function(req, res, next) {
   });  
 });
 
-router.get('/API/getDeadlines', function(req,res,next){
+router.get('/API/getDeadlines',auth, function(req,res,next){
   Deadline.find(function(err, deadline){
     if(err) { return next(err); }
     res.json(deadline);
   });
 });
 
-router.get('/API/countDeadlines', function(req,res,next){
+router.get('/API/countDeadlines',auth, function(req,res,next){
   
   Deadline.find(function(err, response){
     if(err){return next(err); }
     res.json({count: response.length})
   });
 
+});
+
+router.delete('/API/removeDeadline/:recipe',auth, function(req,res,next){
+  req.Deadline.remove(function(err){
+    if(err){ return next(err); }
+    res.json(req.Deadline);
+  });
 });
 
 module.exports = router;

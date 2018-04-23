@@ -1,106 +1,119 @@
-
-
-
-
-  <!-- Container fluid  -->
-  <div class="container-fluid">
-    <!-- Start Page Content -->
-    <div class="row">
-      <div class="col-md-6">
-        <div class="card p-30">
-          <h3>Aantal Deadlines</h3>
-          <p>{{deadlineCount}}</p>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card p-30">
-          <h3>Afgewerkte Deadlines</h3>
-          <p>2</p>
+<!-- Container fluid  -->
+<div class="container-fluid">
+  <!-- Start Page Content -->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card p-30">
+        <div class="row">
+          <div class="col-md-6 text-center">
+            <i class="fas fa-tachometer-alt fa-4x" style="color:#7b6be4"></i>
+          </div>
+          <div class="col-md-6">
+            <h3>Aantal Deadlines</h3>
+            <p>{{deadlineCount}}</p>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-title">
-            <h4>Recent toegevoegde deadlines </h4>
+    <div class="col-md-6">
+      <div class="card p-30">
+        <div class="row">
+          <div class="col-md-6 text-center">
+            <i class="fas fa-check fa-4x" style="color:#7b6be4"></i>
           </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Datum</th>
-                    <th>Vak</th>
-                    <th>Beschrijving</th>
-                    <th>% van de examen punten</th>
-                  </tr>
-                </thead>
-                <tbody>
-
-                  
-
-                  <tr *ngFor='let localDeadlines of deadlines'>
-                    <td>{{localDeadlines.date}}</td>
-                    <td>{{localDeadlines.vak}}</td>
-                    <td>
-                      <span>{{localDeadlines.beschrijving}}</span>
-                    </td>
-                    <td>
-                      <span>{{localDeadlines.procent}}</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <div class="text-center" style="padding: 25px;" *ngIf="deadlineCount == 0">
-                <p>Nog geen deadlines toegevoegd</p>
-              </div>
-              <div class="text-center">
-                <button type="button" class="btn btn-info" style="width: 30%; margin: 25px;">Bekijken in agenda</button>
-              </div>
-
-            </div>
+          <div class="col-md-6">
+            <h3>Afgewerkte Deadlines</h3>
+            <p>2</p>
           </div>
         </div>
       </div>
-
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-title">
-            <h4>Deadline toevoegen</h4>
-          </div>
-          <div class="card-body">
-            <div class="basic-form">
-              <form [formGroup]="addDeadline" (ngSubmit)="onDeadlineSubmit()">
-                <div class="form-group">
-                  <p class="text-muted m-b-15 f-s-12">Opzettelijk verkeerde deadlines uploaden kan resulteren in het blokkeren van de gebruiker</p>
-                </div>
-
-                <div class="form-group">
-                  <input type="text" class="form-control input-default" placeholder="Datum deadline" name="date" formControlName='date' required>
-
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control input-default" placeholder="Vak" name="vak" formControlName='vak' required>
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control input-default" placeholder="Beschrijving" name="beschrijving" formControlName='beschrijving' required>
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control input-default" placeholder="Procent" name="procent" formControlName='procent' required>
-                </div>
-                <div class="form-group">
-                  <button type="submit" class="form-control" class="btn btn-info" style="width: 100%">Success</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
-
-    <!-- End PAge Content -->
   </div>
-  
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-title">
+
+          <h4>Recent toegevoegde deadlines </h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Datum</th>
+                  <th>Vak</th>
+                  <th>Beschrijving</th>
+                  <th>% van de examen punten</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor='let localDeadlines of deadlines'>
+                  <td>{{localDeadlines.date}}</td>
+                  <td>{{localDeadlines.vak}}</td>
+                  <td>
+                    <span>{{localDeadlines.beschrijving}}</span>
+                  </td>
+                  <td>
+                    <span>{{localDeadlines.procent}}</span>
+                  </td>
+                  <td>
+                    <span>
+                      <a href="#" class="btn btn-danger">x</a>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="text-center" style="padding: 25px;" *ngIf="deadlineCount == 0">
+              <p>Nog geen deadlines toegevoegd</p>
+            </div>
+            <div class="text-center">
+              <button type="button" class="btn btn-info" style="width: 30%; margin: 25px;">Bekijken in agenda</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-title">
+          <h4>Deadline toevoegen</h4>
+        </div>
+        <div class="card-body">
+          <div class="basic-form">
+            <form [formGroup]="addDeadline" (ngSubmit)="onDeadlineSubmit()">
+              <div class="form-group">
+                <p class="text-muted m-b-15 f-s-12">Opzettelijk verkeerde deadlines uploaden kan resulteren in het blokkeren van de gebruiker</p>
+              </div>
+
+              <div class="form-group">
+                <input type="text" class="form-control input-default" placeholder="Datum deadline" name="date" formControlName='date' required>
+
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control input-default" placeholder="Vak" name="vak" formControlName='vak' required>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control input-default" placeholder="Beschrijving" name="beschrijving" formControlName='beschrijving'
+                  required>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control input-default" placeholder="Procent" name="procent" formControlName='procent' required>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="form-control" class="btn btn-info" style="width: 100%">Success</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- End PAge Content -->
+</div>

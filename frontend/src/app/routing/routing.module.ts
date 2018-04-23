@@ -10,14 +10,15 @@ import { NotFoundComponent } from '../not-found/not-found.component';
 import { RegisterComponent } from '../user/register/register.component';
 import { SelectivePreloadStrategy } from './SelectivePreloadStrategy';
 import { LoginComponent } from '../user/login/login.component';
+import { LogoutComponent } from '../user/logout/logout.component';
 
 
 const appRoutes: Routes = [
-  {path: 'dashboard', component: HomeComponent},
   {path: 'home', component: LandingpageComponent},
   {path: '', component: LandingpageComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'logout', component: LogoutComponent},
   {path: '**', component: NotFoundComponent}
 ];
 

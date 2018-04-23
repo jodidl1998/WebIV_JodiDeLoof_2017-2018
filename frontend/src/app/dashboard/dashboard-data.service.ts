@@ -29,4 +29,8 @@ export class DashboardDataService {
   addNewDeadline(deadline:Deadline){
     return this.http.post('/API/addDeadline', deadline).pipe(map(Deadline.fromJSON));
   }
+
+  removeDeadline(deadline:Deadline){
+    return this.http.delete(`/API/removeDeadline/${deadline.id}`).pipe(map(Deadline.fromJSON));
+  }
 }

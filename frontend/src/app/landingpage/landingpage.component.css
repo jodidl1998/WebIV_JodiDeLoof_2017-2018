@@ -70,6 +70,7 @@ body {
   
   .features-icons .features-icons-item {
     max-width: 20rem;
+    
   }
   
   .features-icons .features-icons-item .features-icons-icon {
@@ -119,6 +120,8 @@ body {
     left: 0;
     opacity: 0.3;
   }
+
+  
   
   footer.footer {
     padding-top: 4rem;

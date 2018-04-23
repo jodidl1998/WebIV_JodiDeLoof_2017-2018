@@ -6,15 +6,17 @@
         <nav class="navbar navbar-light bg-white static-top">
             <div class="container">
                 <a class="navbar-brand" href="#">Deadlines</a>
-                <a href="#">Instellingen</a>
+                Welkom {{currentUser|async}}
+                <a routerLink="/logout" style="color:#7B6BE4; font-weight: bold;">Logout</a>
             </div>
         </nav>
     </div>
     <ng-template #loginNavbar>
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="#">Deadlines</a>
-                <a class="btn btn-primary" href="#">Inloggen</a>
+                <a class="navbar-brand" routerLink="/home">Deadlines</a>
+                <span><a class="btn btn-default" routerLink="/login">Inloggen</a>
+                <a class="btn btn-primary" routerLink="/register">Registreren</a></span>
             </div>
         </nav>
     </ng-template>

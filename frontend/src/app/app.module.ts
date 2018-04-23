@@ -6,32 +6,35 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LandingpageComponent } from './landingpage/landingpage.component';
-import { HomeComponent } from './dashboard/home/home.component';
-import { DashboardDataService } from './dashboard/dashboard-data.service';
+
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RoutingModule } from './routing/routing.module';
 import { RegisterComponent } from './user/register/register.component';
 import { AuthenticationService } from './user/authentication.service';
 import { LoginComponent } from './user/login/login.component';
+import { LogoutComponent } from './user/logout/logout.component';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { AuthGuardService } from './user/auth-guard.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingpageComponent,
-    HomeComponent,
     NotFoundComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    DashboardModule,
     RoutingModule
   ],
-  providers: [DashboardDataService, AuthenticationService],
+  providers: [AuthenticationService,AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
