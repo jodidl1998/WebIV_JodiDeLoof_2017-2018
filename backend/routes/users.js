@@ -10,6 +10,7 @@ router.post('/register', function(req, res, next) {
   }
   let user = new User();
   user.username = req.body.username;
+  user.classroom = null;
   user.setPassword(req.body.password);
   user.save(function(err) {
     if (err) {
@@ -44,4 +45,6 @@ router.post('/checkusername', function(req, res, next) {
     }
   });
 });
+
+
 module.exports = router;

@@ -8,14 +8,17 @@ import { httpInterceptorProviders } from '../http-interceptors/index';
 import { HomeComponent } from './home/home.component';
 import { DashboardDataService } from './dashboard-data.service';
 import { AuthGuardService } from '../user/auth-guard.service';
+import { AddClassroomComponent } from './add-classroom/add-classroom.component';
 
 const routes = [
-  { path: 'dashboard', canActivate: [ AuthGuardService ], component: HomeComponent }
+  { path: 'dashboard', canActivate: [ AuthGuardService ], component: HomeComponent },
+  { path: 'addClassroom', canActivate: [AuthGuardService ], component: AddClassroomComponent }
 ];
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    AddClassroomComponent
   ],
   imports: [
     HttpClientModule,

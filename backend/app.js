@@ -9,6 +9,7 @@ let passport = require('passport');
 
 mongoose.connect('mongodb://localhost/deadline');
 require('./models/Deadline');
+require('./models/Classroom');
 require('./models/User');
 
 require('./config/passport');

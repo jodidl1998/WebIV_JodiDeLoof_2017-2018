@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DashboardDataService } from '../dashboard-data.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Classroom } from '../classroom.model';
 
 @Component({
   selector: 'app-home',
@@ -12,16 +13,33 @@ export class HomeComponent implements OnInit {
 
   private _deadlines;
   private _count;
+  private _classroom:Classroom;
+  private hasClassroom = false;
 
   addDeadline: FormGroup;
 
   constructor(private dataService:DashboardDataService,private fb: FormBuilder) { }
   
   ngOnInit() {
-    this.dataService.deadlines.subscribe(data => {
-      this._deadlines = data;
-      this._count = data.length;
+    
+
+    this.dataService.classroom.subscribe(data => {
+      this._classroom = data;
+      if(this._classroom != undefined){
+        this.hasClassroom = true;
+      }
+      console.log(this._classroom);
+      
+      if(this._classroom != undefined){
+        this.dataService.getDeadlinesByRoom(this._classroom).subscribe(data => {
+          this._deadlines = data;
+          this._count = data.length;
+        });
+      }
+
     });
+
+    
 
     this.addDeadline = this.fb.group({
       date:['', [Validators.required, Validators.minLength(2)]],
@@ -38,7 +56,9 @@ export class HomeComponent implements OnInit {
   }
 
   onDeadlineSubmit(){
-    this.dataService.addNewDeadline(this.addDeadline.value).subscribe(data => {
+    this.dataService.addNewDeadline(this.addDeadline.value, this._classroom).subscribe(data => {
+      console.log(data);
+      
       this._deadlines.push(data);
       this._count++;
     });

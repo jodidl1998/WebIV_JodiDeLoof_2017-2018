@@ -8,6 +8,7 @@ let UserSchema = new mongoose.Schema({
     lowercase: true,
     unique: true
   },
+  classroom: {type: mongoose.Schema.Types.ObjectId, ref: 'Classroom'},
   hash: String,
   salt: String
 });
@@ -38,5 +39,10 @@ UserSchema.methods.generateJWT = function() {
     },"1234"
   );
 };
+
+UserSchema.method.joinClass = function(classroomCode){
+  this.classroomId = classroomCode;
+  return this.classroomId == classroomCode;
+}
 
 mongoose.model('User', UserSchema);

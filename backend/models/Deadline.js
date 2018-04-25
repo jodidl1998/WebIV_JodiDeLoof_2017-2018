@@ -1,14 +1,12 @@
-let mongoose = require('mongoose');
+let mongoose = require("mongoose");
 
 let DeadlineSchema = new mongoose.Schema({
-    date: String,
-    vak: String,
-    beschrijving: String,
-    procent: String
-  });
+  date: String,
+  vak: String,
+  beschrijving: String,
+  procent: String,
+  classroom: {type: mongoose.Schema.Types.ObjectId, ref: 'Classroom'}
+});
 
-  DeadlineSchema.methods.findByDate = function(callback) {
-    return this.model('Deadline').find({ date: this.date }, callback);
-  };
 
-  mongoose.model('Deadline', DeadlineSchema);
+mongoose.model("Deadline", DeadlineSchema);

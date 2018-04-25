@@ -5,8 +5,8 @@
         <!-- Navigation -->
         <nav class="navbar navbar-light bg-white static-top">
             <div class="container">
-                <a class="navbar-brand" href="#">Deadlines</a>
-                Welkom {{currentUser|async}}
+                <a class="navbar-brand" routerLink="/">Deadlines</a>
+                <span  style="font-weight: bold;" class="hidden-sm">Welkom {{currentUser|async}}</span>
                 <a routerLink="/logout" style="color:#7B6BE4; font-weight: bold;">Logout</a>
             </div>
         </nav>
