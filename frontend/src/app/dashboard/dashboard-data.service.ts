@@ -49,14 +49,17 @@ export class DashboardDataService {
     return this.http.post('/API/addClassroom', classroom).pipe(map(Classroom.fromJSON));
   }
 
-  joinClassroom(_classroom:Classroom){
+  joinClassroom(_classroomid:string){
     let _user = {
       username: this.authService.user$.value,
-      classroomId: _classroom.id
+      classroomId: _classroomid
     };
-    console.log(_user);
     
     return this.http.post('/API/joinClassroom',_user);
+  }
+
+  getIdFromCode(code:string){
+    return this.http.get(`/API/idFromCode/${code}`).pipe(map(Classroom.fromJSON));
   }
 
   leaveClassroom(){

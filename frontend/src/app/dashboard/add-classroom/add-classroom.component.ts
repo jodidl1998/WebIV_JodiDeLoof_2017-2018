@@ -36,7 +36,7 @@ export class AddClassroomComponent implements OnInit {
     classroom.makeCode();
     this.dataService.addNewClassroom(classroom).subscribe(data => {
       classroom = data;
-      this.dataService.joinClassroom(classroom).subscribe(data => {
+      this.dataService.joinClassroom(classroom.id).subscribe(data => {
         console.log(data);
       });
 

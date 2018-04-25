@@ -100,4 +100,11 @@ router.post('/API/leaveClassroom',auth, function(req,res,next){
   );
 });
 
+router.get('/API/idFromCode/:code', auth, function(req,res,next){
+  Classroom.findOne({classroomCode:req.params.code}, function(err, classroom){
+    if(err){next(err);}
+    res.json(classroom);
+  });
+});
+
 module.exports = router;

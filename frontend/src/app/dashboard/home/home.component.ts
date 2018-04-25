@@ -3,6 +3,7 @@ import { DashboardDataService } from '../dashboard-data.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Classroom } from '../classroom.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,7 @@ export class HomeComponent implements OnInit {
 
   addDeadline: FormGroup;
 
-  constructor(private dataService:DashboardDataService,private fb: FormBuilder) { }
+  constructor(private dataService:DashboardDataService,private fb: FormBuilder, private router:Router) { }
   
   ngOnInit() {
     
@@ -73,5 +74,6 @@ export class HomeComponent implements OnInit {
 
   leaveRoom(){
     this.dataService.leaveClassroom();
+    this.hasClassroom = false;
   }
 }
