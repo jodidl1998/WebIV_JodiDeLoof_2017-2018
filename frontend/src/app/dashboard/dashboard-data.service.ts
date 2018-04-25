@@ -14,6 +14,16 @@ export class DashboardDataService {
   constructor(private http: HttpClient, private authService: AuthenticationService) {
   }
 
+  get countDeadlines()
+  {
+    return this.http.get('/API/countDeadlines');
+  }
+
+  get classroom()
+  {
+    return this.http.get(`/API/getClassroom/${this.authService.user$.value}`).pipe(map(Classroom.fromJSON));
+  }
+
   getDeadlinesByRoom(classroom:Classroom):Observable<Deadline[]>
   {
     return this.http.get(`/API/getDeadlines/${classroom.id}`).pipe(
@@ -25,11 +35,7 @@ export class DashboardDataService {
     );
   }
 
-  get countDeadlines()
-  {
-    return this.http.get('/API/countDeadlines');
-  }
-
+  
   addNewDeadline(deadline:Deadline, classroom:Classroom){
     deadline.classroom = classroom.id;
     return this.http.post('/API/addDeadline', deadline).pipe(map(Deadline.fromJSON));
@@ -53,9 +59,16 @@ export class DashboardDataService {
     return this.http.post('/API/joinClassroom',_user);
   }
 
-  get classroom()
-  {
-    return this.http.get(`/API/getClassroom/${this.authService.user$.value}`).pipe(map(Classroom.fromJSON));
+  leaveClassroom(){
+    let userdata = {
+      username: this.authService.user$.value
+    }
+    return this.http.post('/API/leaveClassroom',userdata).subscribe(data => {
+      console.log(data);
+      
+    });
   }
+
+
   
 }

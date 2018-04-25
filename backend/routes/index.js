@@ -23,8 +23,8 @@ router.post("/API/addDeadline/", auth, function(req, res, next) {
   });
 });
 
-router.get("/API/getDeadlines/:classroomid", auth, function(req, res, next) {
-  Deadline.find( { classroom:req.param.classroomid } ,function(err, deadline) {
+router.get("/API/getDeadlines/:classroom", auth, function(req, res, next) {
+  Deadline.find({classroom:req.params.classroom},function(err, deadline) {
     if (err) {
       return next(err);
     }
@@ -85,6 +85,19 @@ router.post("/API/joinClassroom", auth, function(req, res, next) {
   );
 });
 
+router.post('/API/leaveClassroom',auth, function(req,res,next){
+  User.findOneAndUpdate(
+    { username: req.body.username },
 
+    { $set: { "classroom": null } },
+
+    function(err, obj) {
+      if (err) {
+        return next("err");
+      }
+      res.json(obj);
+    }
+  );
+});
 
 module.exports = router;

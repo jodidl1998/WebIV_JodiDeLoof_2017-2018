@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit {
       if(this._classroom != undefined){
         this.hasClassroom = true;
       }
-      console.log(this._classroom);
       
       if(this._classroom != undefined){
         this.dataService.getDeadlinesByRoom(this._classroom).subscribe(data => {
@@ -70,5 +69,9 @@ export class HomeComponent implements OnInit {
 
   get deadlineCount(){
     return this._count;
+  }
+
+  leaveRoom(){
+    this.dataService.leaveClassroom();
   }
 }

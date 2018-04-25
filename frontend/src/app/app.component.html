@@ -7,7 +7,11 @@
             <div class="container">
                 <a class="navbar-brand" routerLink="/">Deadlines</a>
                 <span  style="font-weight: bold;" class="hidden-sm">Welkom {{currentUser|async}}</span>
-                <a routerLink="/logout" style="color:#7B6BE4; font-weight: bold;">Logout</a>
+                
+                <span>
+                    <a routerLink="/dashboard" style="padding-left: 20px;">My Dashboard</a>
+                    <a routerLink="/logout" style="padding-left: 20px;">Logout</a>
+                </span>
             </div>
         </nav>
     </div>
