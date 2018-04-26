@@ -1,31 +1,43 @@
+
+
 <!-- Container fluid  -->
 <div class="container-fluid">
 
+  <app-loadingspinner *ngIf="showMainSpinner == true"></app-loadingspinner>
 
-  <div class="row" *ngIf="hasClassroom == false else classroomInfo">
-    <div class="col-md-12 text-center">
-      <button type="button" class="btn btn-info" style="width: 100%; margin: 5px; padding: 20px; " routerLink="/joinClassroom">Classroom joinen</button>
-    </div>
-    <div class="col-md-12 text-center">
-      <button type="button" class="btn btn-info" routerLink="/addClassroom" style="width: 100%; margin: 5px; padding: 20px;">Classroom aanmaken</button>
-    </div>
+  <div *ngIf="showMainSpinner == false">
+      <div class="row" *ngIf="hasClassroom == false else classroomInfo">
+          <div class="col-md-12 text-center">
+            <button type="button" class="btn btn-info" style="width: 100%; margin: 5px; padding: 20px; " routerLink="/joinClassroom">Classroom joinen</button>
+          </div>
+          <div class="col-md-12 text-center">
+            <button type="button" class="btn btn-info" routerLink="/addClassroom" style="width: 100%; margin: 5px; padding: 20px;">Classroom aanmaken</button>
+          </div>
+        </div>
   </div>
 
   <ng-template #classroomInfo>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div class="card">
           <div class="card-body text-center" style="height: 80px;">
             <h5>Room Code: {{_classroom.classroomCode}}</h5>
-            <a (click)="leaveRoom()" class="btn btn-info" style="padding: 5px;">verlaten</a>
+            <a (click)="leaveRoom()" class="btn btn-info" style="color: white; margin-top: 10px;">verlaten</a>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
+          <div class="card">
+            <div class="card-body text-center" style="height: 80px;">
+              <h4 style="font-size: 1.5em; padding-top: 25px;">{{_classroom.name}}</h4>
+            </div>
+          </div>
+        </div>
+      <div class="col-md-4">
           <div class="card p-30">
             <div class="row">
               <div class="col-md-6 text-center" style="height: 80px;">
-                <i class="fas fa-tachometer-alt fa-4x" style="color:#7b6be4"></i>
+                <i class="fas fa-tachometer-alt fa-4x" style="color:#007bff"></i>
               </div>
               <div class="col-md-6">
                 <h3>Aantal Deadlines</h3>
@@ -59,21 +71,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor='let localDeadlines of deadlines'>
-                  <td>{{localDeadlines.date}}</td>
-                  <td>{{localDeadlines.vak}}</td>
-                  <td>
-                    <span>{{localDeadlines.beschrijving}}</span>
-                  </td>
-                  <td>
-                    <span>{{localDeadlines.procent}}</span>
-                  </td>
-                  <td>
-                    <span>
-                      <a href="#" class="btn btn-danger">x</a>
-                    </span>
-                  </td>
-                </tr>
+                <app-deadline *ngFor='let localDeadline of deadlines' [deadline]='localDeadline'></app-deadline>
               </tbody>
             </table>
             <div class="text-center" style="padding: 25px;" *ngIf="deadlineCount == 0">
@@ -84,16 +82,16 @@
       </div>
     </div>
 
-
-
-
     <div class="col-lg-12">
       <div class="card">
         <div class="card-title">
           <h4>Deadline toevoegen</h4>
         </div>
+        
         <div class="card-body">
           <div class="basic-form">
+            <app-loadingspinner *ngIf="showBottomSpinner == true"></app-loadingspinner>
+
             <form [formGroup]="addDeadline" (ngSubmit)="onDeadlineSubmit()">
               <div class="form-group">
                 <p class="text-muted m-b-15 f-s-12">Opzettelijk verkeerde deadlines uploaden kan resulteren in het blokkeren van de gebruiker</p>

@@ -37,6 +37,7 @@ router.get("/API/getClassroom/:username", auth, function(req,res,next){
   User.findOne({'username':username}, function(err, user){
     if(err){next(err);}
     Classroom.findOne({_id:user.classroom}, function(err, classroom){
+      if(err){next(err);}
       res.json(classroom);
     });
   });
@@ -51,7 +52,7 @@ router.get("/API/countDeadlines", auth, function(req, res, next) {
   });
 });
 
-router.delete("/API/removeDeadline/:recipe", auth, function(req, res, next) {
+router.delete("/API/removeDeadline/:_id", auth, function(req, res, next) {
   req.Deadline.remove(function(err) {
     if (err) {
       return next(err);

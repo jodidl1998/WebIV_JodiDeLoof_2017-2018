@@ -10,6 +10,8 @@ import { DashboardDataService } from './dashboard-data.service';
 import { AuthGuardService } from '../user/auth-guard.service';
 import { AddClassroomComponent } from './add-classroom/add-classroom.component';
 import { JoinClassroomComponent } from './join-classroom/join-classroom.component';
+import { LoadingspinnerComponent } from './loadingspinner/loadingspinner.component';
+import { DeadlineComponent } from './deadline/deadline.component';
 
 const routes = [
   { path: 'dashboard', canActivate: [ AuthGuardService ], component: HomeComponent },
@@ -21,7 +23,9 @@ const routes = [
   declarations: [
     HomeComponent,
     AddClassroomComponent,
-    JoinClassroomComponent
+    JoinClassroomComponent,
+    LoadingspinnerComponent,
+    DeadlineComponent
   ],
   imports: [
     HttpClientModule,

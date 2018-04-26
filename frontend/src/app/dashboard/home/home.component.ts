@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Classroom } from '../classroom.model';
 import { Router } from '@angular/router';
+import { delay } from 'q';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,8 @@ export class HomeComponent implements OnInit {
   private _count;
   private _classroom:Classroom;
   private hasClassroom = false;
-
+  private showMainSpinner = true;
+  private showBottomSpinner = false;
   addDeadline: FormGroup;
 
   constructor(private dataService:DashboardDataService,private fb: FormBuilder, private router:Router) { }
@@ -26,6 +28,8 @@ export class HomeComponent implements OnInit {
 
     this.dataService.classroom.subscribe(data => {
       this._classroom = data;
+      
+      this.showMainSpinner = false;
       if(this._classroom != undefined){
         this.hasClassroom = true;
       }
@@ -39,7 +43,7 @@ export class HomeComponent implements OnInit {
 
     });
 
-    
+    this.showMainSpinner = false;
 
     this.addDeadline = this.fb.group({
       date:['', [Validators.required, Validators.minLength(2)]],
@@ -56,11 +60,15 @@ export class HomeComponent implements OnInit {
   }
 
   onDeadlineSubmit(){
+    this.showBottomSpinner = true;
     this.dataService.addNewDeadline(this.addDeadline.value, this._classroom).subscribe(data => {
       console.log(data);
       
       this._deadlines.push(data);
       this._count++;
+      
+      this.showBottomSpinner = false;
+      
     });
   }
 

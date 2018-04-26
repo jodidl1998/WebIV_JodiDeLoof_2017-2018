@@ -3,10 +3,10 @@
     <div *ngIf='(currentUser | async) else loginNavbar'>
         <!-- header header  -->
         <!-- Navigation -->
-        <nav class="navbar navbar-light bg-white static-top">
+        <nav class="navbar navbar-light bg-white fixed-top">
             <div class="container">
                 <a class="navbar-brand" routerLink="/">Deadlines</a>
-                <span  style="font-weight: bold;" class="hidden-sm">Welkom {{currentUser|async}}</span>
+                <span  style="" class="hidden-sm">Welkom {{currentUser|async}}</span>
                 
                 <span>
                     <a routerLink="/dashboard" style="padding-left: 20px;">My Dashboard</a>
@@ -25,4 +25,6 @@
         </nav>
     </ng-template>
     
+  <div style="margin-top: 80px;">
     <router-outlet></router-outlet>
+  </div>
