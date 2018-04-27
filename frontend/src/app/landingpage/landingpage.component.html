@@ -14,10 +14,10 @@
             <form>
               <div class="form-row">
                 <div class="col-12 col-md-9 mb-2 mb-md-0">
-                  <input type="text" class="form-control form-control-lg" placeholder="Classroom code">
+                  <input type="text" class="form-control form-control-lg" placeholder="Classroom code" id="joinCode" name="joinCode" #joinCode>
                 </div>
                 <div class="col-12 col-md-3">
-                  <button type="submit" class="btn btn-block btn-lg btn-primary">Join!</button>
+                  <button type="submit" class="btn btn-block btn-lg btn-primary" (click)="join(joinCode)">Join!</button>
                 </div>
               </div>
             </form>

@@ -15,6 +15,9 @@ function parseJwt(token) {
 
 @Injectable()
 export class AuthenticationService {
+
+  public classCode;
+
   private readonly _tokenKey = 'currentUser';
   private readonly _url = '/API/users';
   private _user$: BehaviorSubject<string>;

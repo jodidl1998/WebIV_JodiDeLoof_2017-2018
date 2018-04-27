@@ -12,11 +12,15 @@ import { AddClassroomComponent } from './add-classroom/add-classroom.component';
 import { JoinClassroomComponent } from './join-classroom/join-classroom.component';
 import { LoadingspinnerComponent } from './loadingspinner/loadingspinner.component';
 import { DeadlineComponent } from './deadline/deadline.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarModule } from 'angular-calendar';
+
 
 const routes = [
   { path: 'dashboard', canActivate: [ AuthGuardService ], component: HomeComponent },
   { path: 'addClassroom', canActivate: [AuthGuardService ], component: AddClassroomComponent },
-  { path: 'joinClassroom', canActivate: [AuthGuardService ], component: JoinClassroomComponent }
+  { path: 'joinClassroom', canActivate: [AuthGuardService ], component: JoinClassroomComponent },
+  { path: 'calendar', canActivate:[AuthGuardService], component: CalendarComponent}
 ];
 
 @NgModule({
@@ -25,13 +29,16 @@ const routes = [
     AddClassroomComponent,
     JoinClassroomComponent,
     LoadingspinnerComponent,
-    DeadlineComponent
+    DeadlineComponent,
+    CalendarComponent
   ],
   imports: [
     HttpClientModule,
     CommonModule,
     ReactiveFormsModule,
+    CalendarModule.forRoot(),
     RouterModule.forChild(routes)
+    
   ],
   providers: [httpInterceptorProviders, DashboardDataService]
 })

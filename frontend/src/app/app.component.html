@@ -10,13 +10,14 @@
                 
                 <span>
                     <a routerLink="/dashboard" style="padding-left: 20px;">My Dashboard</a>
+                    <a routerLink="/calendar" style="padding-left: 20px;">Calender</a>
                     <a routerLink="/logout" style="padding-left: 20px;">Logout</a>
                 </span>
             </div>
         </nav>
     </div>
     <ng-template #loginNavbar>
-        <nav class="navbar navbar-light bg-light static-top">
+        <nav class="navbar navbar-light bg-light fixed-top">
             <div class="container">
                 <a class="navbar-brand" routerLink="/home">Deadlines</a>
                 <span><a class="btn btn-default" routerLink="/login">Inloggen</a>
@@ -25,6 +26,6 @@
         </nav>
     </ng-template>
     
-  <div style="margin-top: 80px;">
+  <div style="margin-top: 60px;">
     <router-outlet></router-outlet>
   </div>

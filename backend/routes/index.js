@@ -38,7 +38,13 @@ router.get("/API/getClassroom/:username", auth, function(req,res,next){
     if(err){next(err);}
     Classroom.findOne({_id:user.classroom}, function(err, classroom){
       if(err){next(err);}
-      res.json(classroom);
+      if(classroom === null){
+        res.json();
+      }else{
+        res.json(classroom);
+      }
+      
+      
     });
   });
 });
