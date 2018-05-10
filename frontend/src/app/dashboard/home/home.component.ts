@@ -173,6 +173,7 @@ export class HomeComponent implements OnInit {
       
       this.btnClose.nativeElement.click();
       this.showMainSpinner = false;
+      this.router.navigate(["dashboard"]);
     });
   }
 
