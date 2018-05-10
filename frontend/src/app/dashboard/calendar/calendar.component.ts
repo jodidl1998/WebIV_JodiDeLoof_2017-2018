@@ -3,8 +3,9 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   TemplateRef,
-  OnInit
-} from '@angular/core';
+  OnInit,
+  ElementRef
+} from "@angular/core";
 import {
   startOfDay,
   endOfDay,
@@ -14,57 +15,60 @@ import {
   isSameDay,
   isSameMonth,
   addHours
-} from 'date-fns';
-import { Subject } from 'rxjs/Subject';
+} from "date-fns";
+import { Subject } from "rxjs/Subject";
 import {
   CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent
-} from 'angular-calendar';
-import { DashboardDataService } from '../dashboard-data.service';
-import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Classroom } from '../classroom.model';
-import { Deadline } from '../deadline.model';
+} from "angular-calendar";
+import { DashboardDataService } from "../dashboard-data.service";
+import { FormBuilder } from "@angular/forms";
+import { Router } from "@angular/router";
+import { Classroom } from "../classroom.model";
+import { Deadline } from "../deadline.model";
+import { Observable } from "rxjs/Observable";
 
 const colors: any = {
   red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3'
+    primary: "#ad2121",
+    secondary: "#FAE3E3"
   },
   blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF'
+    primary: "#1e90ff",
+    secondary: "#D1E8FF"
   },
   yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA'
+    primary: "#e3bc08",
+    secondary: "#FDF1BA"
   },
   green: {
-    primary: '#7de363',
-    secondary: '#FDF1BA'
+    primary: "#7de363",
+    secondary: "#FDF1BA"
   }
 };
 
-
 @Component({
-  selector: 'app-calendar',
-  templateUrl: './calendar.component.html',
+  selector: "app-calendar",
+  templateUrl: "./calendar.component.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./calendar.component.css']
+  styleUrls: ["./calendar.component.css"]
 })
 export class CalendarComponent implements OnInit {
-
   private _classroom: Classroom;
   private _deadlines: Deadline[];
   private _count;
   private hasClassroom = false;
-  view: string = 'month';
+  view: string = "month";
   viewDate: Date = new Date();
   refresh: Subject<any> = new Subject();
   events: CalendarEvent[] = [];
-  activeDayIsOpen: boolean = true;
+  activeDayIsOpen: boolean = false;
   pullingData = true;
+
+
+  @ViewChild('next') next:ElementRef;
+  @ViewChild('today') today:ElementRef;
 
   constructor(
     private dataService: DashboardDataService,
@@ -73,51 +77,56 @@ export class CalendarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.events.push({
-      start: new Date(),
-      title: "Geen deadlines gevonden tegen vandaag",
-      color: colors.green
-    });
+
     
-    this.dataService.classroom.subscribe(data => {
-      this._classroom = data;
 
-      if (this._classroom != undefined) {
-        this.hasClassroom = true;
-      }
+    if (this._deadlines == undefined) {
+      this.pullingData = true;
+      this.dataService.classroom.subscribe(data => {
+        this._classroom = data;
 
-      if (this._classroom != undefined) {
-        this.dataService.getDeadlinesByRoom(this._classroom).subscribe(data => {
-          this._deadlines = data;
-          this._count = data.length;
+        if (this._classroom != undefined) {
+          this.hasClassroom = true;
+        }
 
-          
-
-          for (let deadline of this._deadlines) {
-            let date = deadline.date;
-            let day =Number(date.substr(0,2));
-            let month = Number(date.substr(3,2));
-            let year = Number(date.substr(6,4));
-            
-            
-
-            let fullDate = new Date(year,month-1, day);            
-            console.log(fullDate);
-            
-            this.events.push({
-              start: fullDate,
-              title: deadline.vak+": "+ deadline.beschrijving + " (op " +deadline.procent+ ")"
+        if (this._classroom != undefined) {
+          this.dataService
+            .getDeadlinesByRoom(this._classroom)
+            .subscribe(data => {
+              this._deadlines = data;
             });
-          }
+        }
+        console.log(this.pullingData + " in if als == undifened");
+        this.ngOnInit();
+      });
+    } else {
+      this._count = this._deadlines.length;
 
-          this.pullingData = false;
+      for (let deadline of this._deadlines) {
+        let date = deadline.date;
+        let day = Number(date.substr(0, 2));
+        let month = Number(date.substr(3, 2));
+        let year = Number(date.substr(6, 4));
+
+        let fullDate = new Date(year, month - 1, day);
+
+        this.events.push({
+          start: fullDate,
+          title:
+            deadline.vak +
+            ": " +
+            deadline.beschrijving +
+            " (op " +
+            deadline.procent +
+            ")"
         });
-
-        
       }
-    });
 
-    
+      if(this.pullingData == true){
+        this.next.nativeElement.click();
+        this.today.nativeElement.click();
+      }
+    }
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -133,6 +142,4 @@ export class CalendarComponent implements OnInit {
       }
     }
   }
-
- 
 }

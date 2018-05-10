@@ -19,6 +19,7 @@ export class DashboardDataService {
     return this.http.get('/API/countDeadlines');
   }
 
+
   get classroom()
   {
     return this.http.get(`/API/getClassroom/${this.authService.user$.value}`).pipe(map(Classroom.fromJSON));
@@ -28,21 +29,22 @@ export class DashboardDataService {
   {
     return this.http.get(`/API/getDeadlines/${classroom.id}`).pipe(
       map((list: any[]): Deadline[]=>
-        list.map(item => 
-          new Deadline(item.date,item.vak, item.beschrijving, item.procent)
-        )
+        list.map(Deadline.fromJSON)
       )
     );
   }
-
   
   addNewDeadline(deadline:Deadline, classroom:Classroom){
     deadline.classroom = classroom.id;
     return this.http.post('/API/addDeadline', deadline).pipe(map(Deadline.fromJSON));
   }
 
-  removeDeadline(deadline:Deadline){
-    return this.http.delete(`/API/removeDeadline/${deadline.id}`).pipe(map(Deadline.fromJSON));
+  editDeadline(deadline:Deadline){
+    return this.http.post('/API/editDeadline', deadline).pipe(map(Deadline.fromJSON));
+  }
+
+  removeDeadline(id:string){
+    return this.http.delete(`/API/removeDeadline/${id}`).pipe(map(Deadline.fromJSON));
   }
 
   addNewClassroom(classroom:Classroom){

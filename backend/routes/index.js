@@ -58,12 +58,10 @@ router.get("/API/countDeadlines", auth, function(req, res, next) {
   });
 });
 
-router.delete("/API/removeDeadline/:_id", auth, function(req, res, next) {
-  req.Deadline.remove(function(err) {
-    if (err) {
-      return next(err);
-    }
-    res.json(req.Deadline);
+router.delete("/API/removeDeadline/:dlId", auth, function(req, res, next) {
+  Deadline.remove({_id:req.params.dlId}, function(err,dl){
+    if(err){next(err);}
+    res.json(dl);
   });
 });
 
@@ -75,6 +73,21 @@ router.post("/API/addClassroom", auth, function(req, res, next) {
     }
     res.json(room);
   });
+});
+
+router.post("/API/editDeadline", auth, function(req, res, next) {
+  Deadline.findOneAndUpdate(
+    {_id: req.body.id},
+    { $set: { 
+      "vak": req.body.vak,
+      "date": req.body.date,
+      "beschrijving": req.body.beschrijving,
+      "procent": req.body.procent 
+    } },
+    function(err, dl){
+      if(err) { next(err); }
+      res.json(dl);
+    });
 });
 
 router.post("/API/joinClassroom", auth, function(req, res, next) {

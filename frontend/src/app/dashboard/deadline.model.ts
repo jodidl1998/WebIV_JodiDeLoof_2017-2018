@@ -18,6 +18,7 @@ export class Deadline{
     */
     static fromJSON(json: any): Deadline
     {
+        
         let deadline = new Deadline(json.date,json.vak, json.beschrijving, json.procent);
         //_id buiten constructor
         deadline._id = json._id;
