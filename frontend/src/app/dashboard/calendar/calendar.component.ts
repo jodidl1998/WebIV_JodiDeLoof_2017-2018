@@ -21,7 +21,8 @@ import {
   CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
-  CalendarDateFormatter
+  CalendarDateFormatter,
+  DAYS_OF_WEEK
 } from "angular-calendar";
 import { DashboardDataService } from "../dashboard-data.service";
 import { FormBuilder } from "@angular/forms";
@@ -77,7 +78,8 @@ export class CalendarComponent implements OnInit {
   pullingData = true;
 
   locale: string = 'nl';
-
+  weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
+  
   @ViewChild('next') next:ElementRef;
   @ViewChild('today') today:ElementRef;
 
