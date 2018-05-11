@@ -107,7 +107,7 @@
                               <form [formGroup]="editDeadline" (ngSubmit)="submitEditDeadline(localDeadlines.id)">
   
                                 <div class="form-group">
-                                  <input type="date" class="form-control input-default" placeholder="Datum deadline" name="date" formControlName='date' [value]="localDeadlines.date" required>
+                                  <input type="date" class="form-control input-default" placeholder="Datum deadline" name="date" formControlName='date' required>
                                   <div class="alert alert-warning" *ngIf=' editDeadline.get("date").errors?.pattern && editDeadline.get("date").touched'>
                                     Gelieve de datum in te geven in de vorm dd/mm/jjjj
                                   </div>

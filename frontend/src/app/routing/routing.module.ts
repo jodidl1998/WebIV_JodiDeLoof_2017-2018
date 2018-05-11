@@ -11,6 +11,7 @@ import { RegisterComponent } from '../user/register/register.component';
 import { SelectivePreloadStrategy } from './SelectivePreloadStrategy';
 import { LoginComponent } from '../user/login/login.component';
 import { LogoutComponent } from '../user/logout/logout.component';
+import { FaqComponent } from '../faq/faq.component';
 
 
 const appRoutes: Routes = [
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
+  {path: 'veelgesteldevragen', component: FaqComponent},
   {path: '**', component: NotFoundComponent}
 ];
 

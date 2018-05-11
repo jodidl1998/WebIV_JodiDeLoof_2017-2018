@@ -12,7 +12,8 @@ import { Classroom } from '../classroom.model';
 export class JoinClassroomComponent implements OnInit {
 
   public classroom: FormGroup;
-  
+  public errorMsg: String;
+
   constructor(private dataService: DashboardDataService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -25,10 +26,18 @@ export class JoinClassroomComponent implements OnInit {
     
       
       this.dataService.getIdFromCode(this.classroom.value.classroomCode).subscribe(data => {
-        let id = data.id;
-        this.dataService.joinClassroom(id).subscribe(data => {
-          this.router.navigate(['/dashboard']);
-        });
+        
+        if(data == undefined){
+          this.errorMsg = "Ongeldige Code"
+        }else{
+          let id = data.id;
+          this.dataService.joinClassroom(id).subscribe(data => {
+          
+            this.router.navigate(['/dashboard']);
+  
+  
+          });
+        }
       });
 
       
