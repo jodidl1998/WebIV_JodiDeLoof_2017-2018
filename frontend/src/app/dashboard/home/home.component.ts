@@ -6,6 +6,7 @@ import { Classroom } from "../classroom.model";
 import { Router } from "@angular/router";
 import { delay } from "q";
 import { AuthenticationService } from "../../user/authentication.service";
+import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 
 @Component({
   selector: "app-home",
