@@ -1,8 +1,50 @@
-<div id="main-wrapper">
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <a class="navbar-brand" href="#">Deadlines</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                
+                    <li class="nav-item" *ngIf='(currentUser | async)'>
+                        <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+                    </li>
+
+                    <li class="nav-item" *ngIf='(currentUser | async)'>
+                        <a class="nav-link" routerLink="/calendar">Kalender</a>
+                    </li>
+
+
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <div *ngIf='(currentUser | async) else loginNavbar'>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/logout">Logout</a>
+                    </li>
+                </div>
+                <ng-template #loginNavbar>
+                    <li class="nav-item">
+                        <a class="nav-link"  routerLink="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary" style="color: white;" routerLink="/register">Registreer</a>
+                    </li>
+                </ng-template>
+            </ul>
+
+
+        </div>
+    </nav>
+</div>
+
+<div id="main-wrapper">
+    <!--
     <div *ngIf='(currentUser | async) else loginNavbar'>
-        <!-- header header  -->
-        <!-- Navigation -->
+
         <nav class="navbar navbar-light bg-white fixed-top">
             <div class="container">
                 <a class="navbar-brand" routerLink="/">Deadlines</a>
@@ -20,12 +62,15 @@
         <nav class="navbar navbar-light bg-light fixed-top">
             <div class="container">
                 <a class="navbar-brand" routerLink="/home">Deadlines</a>
-                <span><a class="btn btn-default" routerLink="/login">Inloggen</a>
-                <a class="btn btn-primary" routerLink="/register">Registreren</a></span>
+                <span><a class="btn btn-default nav-link"  style="width: 100%" routerLink="/login">Inloggen</a>
+                    <a class="btn btn-default nav-link" routerLink="/FAQ">Hoe het werkt</a>
+                <a class="btn btn-primary nav-link" routerLink="/register">Registreren</a></span>
             </div>
         </nav>
     </ng-template>
-    
-  <div style="margin-top: 60px;">
-    <router-outlet></router-outlet>
-  </div>
+-->
+
+
+    <div class="body-wrapper">
+        <router-outlet></router-outlet>
+    </div>

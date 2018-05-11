@@ -75,10 +75,7 @@ export class HomeComponent implements OnInit {
       date: [
         "",
         [
-          Validators.required,
-          Validators.pattern(
-            "^((0?[1-9]|[12][0-9]|3[01])[- /.](0?[1-9]|1[012])[- /.](19|20)?[0-9]{2})*$"
-          )
+          Validators.required
         ]
       ],
       vak: ["", [Validators.required, Validators.minLength(2)]],
@@ -88,12 +85,7 @@ export class HomeComponent implements OnInit {
 
     this.editDeadline = this.fb.group({
       date: [
-        "",
-        [
-          Validators.pattern(
-            "^((0?[1-9]|[12][0-9]|3[01])[- /.](0?[1-9]|1[012])[- /.](19|20)?[0-9]{2})*$"
-          )
-        ]
+        ""
       ],
       vak: ["", [Validators.minLength(2)]],
       beschrijving: ["", [Validators.minLength(2)]],
@@ -101,9 +93,18 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  private minTwoDigits(n) {
+    return (n < 10 ? '0' : '') + n;
+  }
+
   onDeadlineSubmit() {
     if (this.addDeadline.valid) {
       this.showBottomSpinner = true;
+
+      let addedDeadline = this.addDeadline.value; 
+      let datum = new Date(addedDeadline.date);
+      addedDeadline.date = datum.getDate() + "/" + this.minTwoDigits((datum.getMonth()+1)) + "/" + datum.getFullYear();     
+
       this.dataService
         .addNewDeadline(this.addDeadline.value, this._classroom)
         .subscribe(data => {
@@ -162,6 +163,9 @@ export class HomeComponent implements OnInit {
       editedDeadline.procent = oudeDeadline.procent;
     }
 
+    let datum = new Date(editedDeadline.date);
+    editedDeadline.date = datum.getDate() + "/" + this.minTwoDigits((datum.getMonth()+1)) + "/" + datum.getFullYear(); 
+
     //geef de editedDeadline door aan de dataservice
     this.dataService.editDeadline(editedDeadline).subscribe(data => {
       for (var i = 0; i < this._deadlines.length; i++) {
@@ -171,9 +175,13 @@ export class HomeComponent implements OnInit {
         }
       }
       
-      this.btnClose.nativeElement.click();
+      
       this.showMainSpinner = false;
-      this.router.navigate(["dashboard"]);
+      this.btnClose.nativeElement.click();
+
+      //jammer genoeg sluit bij het klikken op de modal sluit knop de zwarte overlay heel soms niet af. Na dat dit gebeurd zorgt de overlay voor scrol lock.
+      //ik gebruik deze 'onorthodoxe' oplossing bij gebrek aan een betere oplossing 
+      window.location.reload();
     });
   }
 

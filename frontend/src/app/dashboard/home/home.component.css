@@ -153,6 +153,29 @@ h5 {
   top: -10px;
   width: 6px;
 }
+
+.card-top{
+  height: 110px;
+}
+
+.card-top h5{
+  margin-top: 25px;
+}
+
+.card-top h4{
+  margin-top: 20px;
+}
+
+.card-top h3{
+  margin-top: 25px;
+}
+
+@media screen and (max-width: 1280px) {
+  .card-top{
+    height: 120px;
+  }
+}
+
 @-moz-keyframes heartbit {
   0% {
     -moz-transform: scale(0);

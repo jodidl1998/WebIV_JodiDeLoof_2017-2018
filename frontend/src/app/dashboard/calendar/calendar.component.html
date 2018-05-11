@@ -1,28 +1,31 @@
-<div >
-  <div class="text-center" style="padding-top: 25px;">
-    <div class="col-md-12">
-      <div class="btn-group">
-        <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-          <i class="fas fa-angle-left"></i>
-        </div>
-        <div #today class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
-          Vandaag
-        </div>
-        <div #next class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-          <i class="fas fa-angle-right"></i>
+<div class="container">
+  <div>
+    <div class="text-center" style="padding-top: 25px;">
+      <div class="col-md-12">
+        <div class="btn-group">
+          <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+            <i class="fas fa-angle-left"></i>
+          </div>
+          <div #today class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+            Vandaag
+          </div>
+          <div #next class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+            <i class="fas fa-angle-right"></i>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<br>
+  <br>
 
-<div #calDiv>
-  <div [ngSwitch]="view">
-    <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen"
-      (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
-    </mwl-calendar-month-view>
+  <div #calDiv>
+    <div [ngSwitch]="view">
+      <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen"
+        (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+      </mwl-calendar-month-view>
+    </div>
   </div>
-</div>
 
+
+</div>

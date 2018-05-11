@@ -1,207 +1,210 @@
+<div class="container">
 <!-- Container fluid  -->
 <div class="container-fluid">
 
-  <p class="text-center" style="color: crimson; padding-top: 15px;" *ngIf="showClassCodeError === true">Kon classroom niet joinen omdat je al deel uitmaakt van een andere classroom
-    <br>Gelieve eerst de classroom te verlaten <a (click)="hideJoinError()" style="color: crimson; cursor: pointer;"><i class="far fa-times-circle"></i></a></p>
-  <app-loadingspinner *ngIf="showMainSpinner == true"></app-loadingspinner>
-
-  <div *ngIf="showMainSpinner == false">
-    <div class="row" *ngIf="hasClassroom == false else classroomInfo">
-      <div class="col-md-12 text-center">
-        <button type="button" class="btn btn-info" style="width: 100%; margin: 5px; padding: 20px; " routerLink="/joinClassroom">Classroom joinen</button>
-      </div>
-      <div class="col-md-12 text-center">
-        <button type="button" class="btn btn-info" routerLink="/addClassroom" style="width: 100%; margin: 5px; padding: 20px;">Classroom aanmaken</button>
-      </div>
-    </div>
-  </div>
-
-  <ng-template #classroomInfo>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body text-center" style="height: 80px;">
-            <h5>Room Code: {{_classroom.classroomCode}}</h5>
-            <a (click)="leaveRoom()" class="btn btn-info" style="color: white; margin-top: 10px;">verlaten</a>
-          </div>
+    <p class="text-center" style="color: crimson; padding-top: 15px;" *ngIf="showClassCodeError === true">Kon classroom niet joinen omdat je al deel uitmaakt van een andere classroom
+      <br>Gelieve eerst de classroom te verlaten <a (click)="hideJoinError()" style="color: crimson; cursor: pointer;"><i class="far fa-times-circle"></i></a></p>
+    <app-loadingspinner *ngIf="showMainSpinner == true"></app-loadingspinner>
+  
+    <div *ngIf="showMainSpinner == false">
+      <div class="row" *ngIf="hasClassroom == false else classroomInfo">
+        <div class="col-md-12 text-center">
+          <button type="button" class="btn btn-info" style="width: 100%; margin: 5px; padding: 20px; " routerLink="/joinClassroom">Classroom joinen</button>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body text-center" style="height: 80px;">
-            <h4 style="font-size: 1.5em; padding-top: 25px;">{{_classroom.name}}</h4>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card p-30">
-          <div class="row">
-            <div class="col-md-6 text-center" style="height: 80px;">
-              <i class="fas fa-tachometer-alt fa-4x" style="color:#007bff"></i>
-            </div>
-            <div class="col-md-6">
-              <h3>Aantal Deadlines</h3>
-              <p>{{deadlineCount}}</p>
-            </div>
-          </div>
+        <div class="col-md-12 text-center">
+          <button type="button" class="btn btn-info" routerLink="/addClassroom" style="width: 100%; margin: 5px; padding: 20px;">Classroom aanmaken</button>
         </div>
       </div>
     </div>
-  </ng-template>
-
-
-  <div *ngIf="hasClassroom == true">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-title">
-
-            <h4>Recent toegevoegde deadlines </h4>
+  
+    <ng-template #classroomInfo>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body card-top text-center">
+              <h5>Room Code: {{_classroom.classroomCode}}</h5>
+              <a (click)="leaveRoom()" class="btn btn-info" style="color: white; margin-top: 10px;">verlaten</a>
+            </div>
           </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Datum</th>
-                    <th>Vak</th>
-                    <th>Beschrijving</th>
-                    <th>% van de examen punten</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!--<app-deadline *ngFor='let localDeadline of deadlines' [deadline]='localDeadline'></app-deadline>-->
-                  <tr *ngFor='let localDeadlines of deadlines'>
-                    <td>{{localDeadlines.date}}</td>
-                    <td>{{localDeadlines.vak}}</td>
-                    <td>
-                      <span>{{localDeadlines.beschrijving}}</span>
-                    </td>
-                    <td>
-                      <span>{{localDeadlines.procent}}</span>
-                    </td>
-                    <td>
-                      <span>
-                        <button class="btn btn-danger" (click)="removeDeadline(localDeadlines.id)">
-                          <i class="fas fa-trash-alt"></i>
-                        </button>
-                        <button class="btn btn-info" data-toggle="modal" [attr.data-target]="'#'+ localDeadlines.id">
-                          <i class="fas fa-edit"></i>
-                        </button>
-                      </span>
-                    </td>
-
-                    <div #modal class="modal fade" id="{{localDeadlines.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{{localDeadlines.beschrijving}}</h5>
-                            <button #btnClose type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            <form [formGroup]="editDeadline" (ngSubmit)="submitEditDeadline(localDeadlines.id)">
-
-                              <div class="form-group">
-                                <input type="text" class="form-control input-default" placeholder="Datum deadline" name="date" formControlName='date' [value]="localDeadlines.date" required>
-                                <div class="alert alert-warning" *ngIf=' editDeadline.get("date").errors?.pattern && editDeadline.get("date").touched'>
-                                  Gelieve de datum in te geven in de vorm dd/mm/jjjj
-                                </div>
-                                <div class="alert alert-warning" *ngIf=' editDeadline.get("date").errors?.required && editDeadline.get("date").touched'>
-                                  Gelieve een datum in te geven
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <input type="text" class="form-control input-default" placeholder="Vak" name="vak" formControlName='vak' [value]="localDeadlines.vak" required>
-                                <div class="alert alert-warning" *ngIf=' editDeadline.get("vak").errors?.required && editDeadline.get("vak").touched'>
-                                  Gelieve een vak in te geven
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <input type="text" class="form-control input-default" placeholder="Beschrijving" name="beschrijving" formControlName='beschrijving' [value]="localDeadlines.beschrijving" required>
-                                <div class="alert alert-warning" *ngIf=' editDeadline.get("beschrijving").errors?.required && editDeadline.get("beschrijving").touched'>
-                                  Gelieve een beschrijving in te geven
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <input type="text" class="form-control input-default" placeholder="Procent" name="procent" formControlName='procent' [value]="localDeadlines.procent" required>
-                                <div class="alert alert-warning" *ngIf=' editDeadline.get("procent").errors?.required && editDeadline.get("procent").touched'>
-                                  Gelieve een procent in te geven
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <button type="submit" class="form-control" class="btn btn-info" style="width: 100%">Aanpassen</button>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                  </tr>
-                </tbody>
-              </table>
-              <div class="text-center" style="padding: 25px;" *ngIf="deadlineCount == 0">
-                <p>Nog geen deadlines toegevoegd</p>
+        </div>
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body  card-top text-center">
+              <h4 style="font-size: 1.5em; padding-top: 25px;">{{_classroom.name}}</h4>
+              <hr style="width: 20%;">
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card p-30">
+            <div class="row">
+              <div class="col-lg-6  card-top text-center">
+                <i class="fas fa-tachometer-alt fa-4x" style="color:#007bff"></i>
+              </div>
+              <div class="col-lg-6 text-center">
+                <h3>Aantal Deadlines</h3>
+                <p>{{deadlineCount}}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-title">
-            <h4>Deadline toevoegen</h4>
+    </ng-template>
+  
+  
+    <div *ngIf="hasClassroom == true">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-title">
+  
+              <h4>Recent toegevoegde deadlines </h4>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Datum</th>
+                      <th>Vak</th>
+                      <th>Beschrijving</th>
+                      <th>% van de examen punten</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!--<app-deadline *ngFor='let localDeadline of deadlines' [deadline]='localDeadline'></app-deadline>-->
+                    <tr *ngFor='let localDeadlines of deadlines'>
+                      <td>{{localDeadlines.date}}</td>
+                      <td>{{localDeadlines.vak}}</td>
+                      <td>
+                        <span>{{localDeadlines.beschrijving}}</span>
+                      </td>
+                      <td>
+                        <span>{{localDeadlines.procent}}</span>
+                      </td>
+                      <td>
+                        <span>
+                          <button class="btn btn-danger" (click)="removeDeadline(localDeadlines.id)" style="width: 40px;">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
+                          <button class="btn btn-info" data-toggle="modal" [attr.data-target]="'#'+ localDeadlines.id" style="width: 40px;">
+                            <i class="fas fa-edit"></i>
+                          </button>
+                        </span>
+                      </td>
+  
+                      <div #modal class="modal fade" id="{{localDeadlines.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">{{localDeadlines.beschrijving}}</h5>
+                              <button #btnClose type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span #btnClose aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form [formGroup]="editDeadline" (ngSubmit)="submitEditDeadline(localDeadlines.id)">
+  
+                                <div class="form-group">
+                                  <input type="date" class="form-control input-default" placeholder="Datum deadline" name="date" formControlName='date' [value]="localDeadlines.date" required>
+                                  <div class="alert alert-warning" *ngIf=' editDeadline.get("date").errors?.pattern && editDeadline.get("date").touched'>
+                                    Gelieve de datum in te geven in de vorm dd/mm/jjjj
+                                  </div>
+                                  <div class="alert alert-warning" *ngIf=' editDeadline.get("date").errors?.required && editDeadline.get("date").touched'>
+                                    Gelieve een datum in te geven
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <input type="text" class="form-control input-default" placeholder="Vak" name="vak" formControlName='vak' [value]="localDeadlines.vak" required>
+                                  <div class="alert alert-warning" *ngIf=' editDeadline.get("vak").errors?.required && editDeadline.get("vak").touched'>
+                                    Gelieve een vak in te geven
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <input type="text" class="form-control input-default" placeholder="Beschrijving" name="beschrijving" formControlName='beschrijving' [value]="localDeadlines.beschrijving" required>
+                                  <div class="alert alert-warning" *ngIf=' editDeadline.get("beschrijving").errors?.required && editDeadline.get("beschrijving").touched'>
+                                    Gelieve een beschrijving in te geven
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <input type="text" class="form-control input-default" placeholder="Procent" name="procent" formControlName='procent' [value]="localDeadlines.procent" required>
+                                  <div class="alert alert-warning" *ngIf=' editDeadline.get("procent").errors?.required && editDeadline.get("procent").touched'>
+                                    Gelieve een procent in te geven
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <button type="submit" class="form-control" class="btn btn-info" style="width: 100%">Aanpassen</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+  
+  
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="text-center" style="padding: 25px;" *ngIf="deadlineCount == 0">
+                  <p>Nog geen deadlines toegevoegd</p>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <div class="card-body">
-            <div class="basic-form">
-              <app-loadingspinner *ngIf="showBottomSpinner == true"></app-loadingspinner>
-
-              <form [formGroup]="addDeadline" (ngSubmit)="onDeadlineSubmit()">
-
-                <div class="form-group">
-                  <input type="text" class="form-control input-default" placeholder="Datum deadline" name="date" formControlName='date' required>
-                  <div class="alert alert-warning" *ngIf=' addDeadline.get("date").errors?.pattern && addDeadline.get("date").touched'>
-                    Gelieve de datum in te geven in de vorm dd/mm/jjjj
+        </div>
+  
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-title">
+              <h4>Deadline toevoegen</h4>
+            </div>
+  
+            <div class="card-body">
+              <div class="basic-form">
+                <app-loadingspinner *ngIf="showBottomSpinner == true"></app-loadingspinner>
+  
+                <form [formGroup]="addDeadline" (ngSubmit)="onDeadlineSubmit()">
+  
+                  <div class="form-group">
+                    <input type="date" class="form-control input-default" placeholder="Datum deadline" name="date" formControlName='date' required>
+                    <div class="alert alert-warning" *ngIf=' addDeadline.get("date").errors?.pattern && addDeadline.get("date").touched'>
+                      Gelieve de datum in te geven in de vorm dd/mm/jjjj
+                    </div>
+                    <div class="alert alert-warning" *ngIf=' addDeadline.get("date").errors?.required && addDeadline.get("date").touched'>
+                      Gelieve een datum in te geven
+                    </div>
                   </div>
-                  <div class="alert alert-warning" *ngIf=' addDeadline.get("date").errors?.required && addDeadline.get("date").touched'>
-                    Gelieve een datum in te geven
+                  <div class="form-group">
+                    <input type="text" class="form-control input-default" placeholder="Vak" name="vak" formControlName='vak' required>
+                    <div class="alert alert-warning" *ngIf=' addDeadline.get("vak").errors?.required && addDeadline.get("vak").touched'>
+                      Gelieve een vak in te geven
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control input-default" placeholder="Vak" name="vak" formControlName='vak' required>
-                  <div class="alert alert-warning" *ngIf=' addDeadline.get("vak").errors?.required && addDeadline.get("vak").touched'>
-                    Gelieve een vak in te geven
+                  <div class="form-group">
+                    <input type="text" class="form-control input-default" placeholder="Beschrijving" name="beschrijving" formControlName='beschrijving'
+                      required>
+                    <div class="alert alert-warning" *ngIf=' addDeadline.get("beschrijving").errors?.required && addDeadline.get("beschrijving").touched'>
+                      Gelieve een beschrijving in te geven
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control input-default" placeholder="Beschrijving" name="beschrijving" formControlName='beschrijving'
-                    required>
-                  <div class="alert alert-warning" *ngIf=' addDeadline.get("beschrijving").errors?.required && addDeadline.get("beschrijving").touched'>
-                    Gelieve een beschrijving in te geven
+                  <div class="form-group">
+                    <input type="text" class="form-control input-default" placeholder="Procent" name="procent" formControlName='procent' required>
+                    <div class="alert alert-warning" *ngIf=' addDeadline.get("procent").errors?.required && addDeadline.get("procent").touched'>
+                      Gelieve een procent in te geven
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control input-default" placeholder="Procent" name="procent" formControlName='procent' required>
-                  <div class="alert alert-warning" *ngIf=' addDeadline.get("procent").errors?.required && addDeadline.get("procent").touched'>
-                    Gelieve een procent in te geven
+                  <div class="form-group">
+                    <button type="submit" class="form-control" class="btn btn-info" style="width: 100%">Toevoegen</button>
                   </div>
-                </div>
-                <div class="form-group">
-                  <button type="submit" class="form-control" class="btn btn-info" style="width: 100%">Toevoegen</button>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  
+    <!-- End PAge Content -->
   </div>
-
-  <!-- End PAge Content -->
 </div>
