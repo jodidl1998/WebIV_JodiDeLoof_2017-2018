@@ -8,7 +8,7 @@ let passport = require("passport");
 let jwt = require("express-jwt");
 
 let auth = jwt({
-  secret: process.env.RECIPE_BACKEND_SECRET
+  secret: "1234"
 });
 
 router.post("/API/addDeadline/", auth, function(req, res, next) {

@@ -20,7 +20,8 @@ import { Subject } from "rxjs/Subject";
 import {
   CalendarEvent,
   CalendarEventAction,
-  CalendarEventTimesChangedEvent
+  CalendarEventTimesChangedEvent,
+  CalendarDateFormatter
 } from "angular-calendar";
 import { DashboardDataService } from "../dashboard-data.service";
 import { FormBuilder } from "@angular/forms";
@@ -28,6 +29,9 @@ import { Router } from "@angular/router";
 import { Classroom } from "../classroom.model";
 import { Deadline } from "../deadline.model";
 import { Observable } from "rxjs/Observable";
+import { CustomDateFormatter } from "./custom-date-formatter.provider";
+import localeNl from '@angular/common/locales/nl';
+import { registerLocaleData } from "@angular/common";
 
 const colors: any = {
   red: {
@@ -52,7 +56,13 @@ const colors: any = {
   selector: "app-calendar",
   templateUrl: "./calendar.component.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ["./calendar.component.css"]
+  styleUrls: ["./calendar.component.css"],
+  providers: [
+    {
+      provide: CalendarDateFormatter,
+      useClass: CustomDateFormatter
+    }
+  ]
 })
 export class CalendarComponent implements OnInit {
   private _classroom: Classroom;
@@ -66,6 +76,7 @@ export class CalendarComponent implements OnInit {
   activeDayIsOpen: boolean = false;
   pullingData = true;
 
+  locale: string = 'nl';
 
   @ViewChild('next') next:ElementRef;
   @ViewChild('today') today:ElementRef;
@@ -77,7 +88,7 @@ export class CalendarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
+    registerLocaleData(localeNl);
     
 
     if (this._deadlines == undefined) {
