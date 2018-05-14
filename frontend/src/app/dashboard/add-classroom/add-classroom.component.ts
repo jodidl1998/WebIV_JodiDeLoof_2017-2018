@@ -22,7 +22,8 @@ import { Classroom } from '../classroom.model';
 export class AddClassroomComponent implements OnInit {
 
   public classroom: FormGroup;
-  
+  public errorMsg: String;
+
   constructor(private dataService: DashboardDataService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit() {

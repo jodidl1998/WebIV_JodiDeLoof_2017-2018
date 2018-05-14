@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   public user: FormGroup;
   public errorMsg: string;
 
-  constructor(private authService: AuthenticationService, private router: Router, private fb: FormBuilder) { }
+  constructor(private authService: AuthenticationService, private router: Router, public fb: FormBuilder) { }
 
   ngOnInit() {
     this.user = this.fb.group({

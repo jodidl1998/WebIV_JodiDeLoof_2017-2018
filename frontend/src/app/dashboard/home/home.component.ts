@@ -14,15 +14,15 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
   styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit {
-  private _deadlines;
-  private _count;
-  private _classroom: Classroom;
+  public _deadlines;
+  public _count;
+  public _classroom: Classroom;
 
   //booleans voor html showing
-  private hasClassroom = false;
-  private showMainSpinner = true;
-  private showBottomSpinner = false;
-  private showClassCodeError = false;
+  public hasClassroom = false;
+  public showMainSpinner = true;
+  public showBottomSpinner = false;
+  public showClassCodeError = false;
 
   addDeadline: FormGroup;
   editDeadline: FormGroup;
@@ -32,10 +32,10 @@ export class HomeComponent implements OnInit {
   @ViewChild("modal") modal: ElementRef;
 
   constructor(
-    private dataService: DashboardDataService,
-    private fb: FormBuilder,
-    private router: Router,
-    private authService: AuthenticationService
+    public dataService: DashboardDataService,
+    public fb: FormBuilder,
+    public router: Router,
+    public authService: AuthenticationService
   ) {}
 
   ngOnInit() {
@@ -94,7 +94,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  private minTwoDigits(n) {
+  public minTwoDigits(n) {
     return (n < 10 ? '0' : '') + n;
   }
 
