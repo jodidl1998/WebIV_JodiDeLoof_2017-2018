@@ -1,6 +1,6 @@
 {
     "/API": {
-        "target": "http://localhost:3000",
+        "target": "https://mydeadlines-backend.herokuapp.com",
         "secure": false
     }
 }
