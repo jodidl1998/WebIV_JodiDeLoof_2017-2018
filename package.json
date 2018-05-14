@@ -7,7 +7,7 @@
         "start": "node server",
         "deploy-backend": "git subtree push --prefix backend mydeadlines-backend master",
         "build-frontend": "cd frontend && ng build --prod",
-        "commit-build-changes": "git add . && git commit -m 'push'",
+        "commit-build-changes": "git add . && git commit -m 'herokupush'",
         "deploy-frontend": "npm run build-frontend && npm run copy && npm run commit-build-changes && git subtree push --prefix serve-frontend mydeadlines-frontend master",
         "copy": "cpx 'frontend/dist/**' serve-frontend/www"
     },
