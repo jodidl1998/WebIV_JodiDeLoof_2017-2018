@@ -7,7 +7,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 let passport = require('passport');
 
-mongoose.connect('mongodb://localhost/deadline');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/deadline');
+
 require('./models/Deadline');
 require('./models/Classroom');
 require('./models/User');
@@ -19,6 +20,8 @@ var users = require('./routes/users');
 
 var app = express();
 
+let cors = require('cors');
+app.use(cors({origin: "*"}));
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
