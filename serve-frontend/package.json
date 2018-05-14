@@ -3,7 +3,7 @@
  "version": "1.0.0",
  "main": "index.js",
  "scripts": {
- "start": "node index.js"
+ "start": "node index.js --proxy-config proxy.conf.json"
  },
  "dependencies": {
  "gulp": "3.9.1",
