@@ -1,6 +1,6 @@
 {
     "/API": {
         "target": "https://mydeadlines-backend.herokuapp.com",
-        "secure": false
+        "secure": true
     }
 }
